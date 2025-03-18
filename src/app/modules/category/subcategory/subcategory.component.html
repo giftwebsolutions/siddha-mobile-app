@@ -1,3 +1,27 @@
-<p>
-  subcategory works!
-</p>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Sub Categories</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-padding">
+    <ion-grid>
+      <ion-row>
+        @for (sub of subCategories; track sub.id) {
+        <ion-col size="6" sizeMd="3">
+          <ion-card class="category-card">
+            <img *ngIf="sub.logo?.medium_image_url" [src]="sub.logo?.medium_image_url" [alt]="sub.name"
+              class="category-image" />
+            <ion-card-content class="text-center">
+              <div class="category-name">{{ sub.name }}</div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        }
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+
+<app-footer></app-footer>

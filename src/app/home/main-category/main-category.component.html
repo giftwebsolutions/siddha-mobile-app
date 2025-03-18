@@ -1,34 +1,20 @@
 <div class="category-list">
   <div class="row flex-nowrap category-items">
-    <div class="col col-2">
-      <div class="category-item">Category 1</div>
+    @if (categories?.length > 0) {
+    @for (category of categories; track category.id) {
+    <div class="col col-3">
+      <div class="category-item text-center">
+        @if (category.logo?.small_image_url) {
+        <img [src]="category.logo.small_image_url" alt="{{ category.name }}" class="img-fluid mb-2" />
+        }
+        <div class="category-name">{{ category.name }}</div>
+      </div>
     </div>
-    <div class="col col-2">
-      <div class="category-item">Category 2</div>
+    }
+    } @else {
+    <div class="col">
+      <div class="text-muted">No categories found.</div>
     </div>
-    <div class="col col-2">
-      <div class="category-item">Category 3</div>
-    </div>
-    <div class="col col-2">
-      <div class="category-item">Category 4</div>
-    </div>
-    <div class="col col-2">
-      <div class="category-item">Category 5</div>
-    </div>
-    <div class="col col-2">
-      <div class="category-item">Category 6</div>
-    </div>
-    <div class="col col-2">
-      <div class="category-item">Category 7</div>
-    </div>
-    <div class="col col-2">
-      <div class="category-item">Category 8</div>
-    </div>
-    <div class="col col-2">
-      <div class="category-item">Category 9</div>
-    </div>
-    <div class="col col-2">
-      <div class="category-item">Category 10</div>
-    </div>
+    }
   </div>
 </div>

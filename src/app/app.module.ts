@@ -7,7 +7,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // I
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
 import { LayoutModule } from './components/layout/layout.module';
 import { JwtInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';

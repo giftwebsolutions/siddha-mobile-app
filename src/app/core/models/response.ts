@@ -2,7 +2,7 @@ export type Link = {
     url?: string | null;
     label?: string;
     active?: boolean;
-}
+};
 
 export type Meta = {
     current_page?: number;
@@ -13,10 +13,10 @@ export type Meta = {
     per_page?: number;
     to?: number;
     total?: number;
-}
+};
 
-export type Response = {
-    data: any;
+export interface PaginatedResponse<T> {
+    data: T;
     links?: {
         first: string;
         last: string;

@@ -33,7 +33,7 @@ export class AppInitService {
     appRegister(): void {
         this.http.get(environment.apiUrl + 'register')
             .subscribe((response: any) => {
-                if (response.status = 'success' && response.statusCode === 200) {
+                if (response.status === 'success' && response.statusCode === 200) {
                     this.uuid = response.data?.token;
                     this.storage.set('uuid', this.uuid);
                 } else {

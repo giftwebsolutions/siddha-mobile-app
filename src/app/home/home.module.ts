@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { MainCategoryComponent } from './main-category/main-category.component';
 import { HomeComponent } from './home.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutModule } from '../components/layout/layout.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';

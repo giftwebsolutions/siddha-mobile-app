@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 import { register } from 'swiper/element/bundle';
 
 register();
@@ -18,5 +20,7 @@ export class AppComponent {
     { title: 'Spam', url: '/folder/spam', icon: 'warning' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+  constructor() {
+    console.log(this.appPages);
+  }
 }

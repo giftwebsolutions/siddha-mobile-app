@@ -1,3 +1,43 @@
-<p>
-  category works!
-</p>
+<ion-header [translucent]="true">
+  <app-header></app-header>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  @if (categories.length > 0) {
+  <ion-grid>
+    <ion-row>
+      @for (category of categories; track category.id; let i = $index) {
+      <ion-col size="6" sizeMd="3">
+        <ion-card [routerLink]="['/categories', category.id]" routerDirection="forward" class="category-card">
+          @if (category.logo?.medium_image_url) {
+          <img [src]="category.logo?.medium_image_url" [alt]="category.name" class="category-image" />
+          }
+          <ion-card-content class="text-center">
+            <div class="fw-bold">{{ i + 1 }}. {{ category.name }}</div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      }
+    </ion-row>
+  </ion-grid>
+  } @else {
+  <div class="text-center p-4">
+    <ion-text color="medium">No categories available.</ion-text>
+  </div>
+  }
+
+  <!-- Pagination Section -->
+  @if (links.length > 1) {
+  <div class="pagination text-center mt-4">
+    @for (link of links; track link.label) {
+    <ion-button [disabled]="!link.url" [color]="link.active ? 'primary' : 'medium'" size="small"
+      (click)="onPageChangeFromUrl(link.url || '')">
+      {{ link.label }}
+    </ion-button>
+    }
+  </div>
+  }
+
+</ion-content>
+
+<app-footer></app-footer>
