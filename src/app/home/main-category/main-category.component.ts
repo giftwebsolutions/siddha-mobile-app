@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../modules/category/category.service';
 
 @Component({
-  selector: 'home-main-category',
-  templateUrl: './main-category.component.html',
-  styleUrls: ['./main-category.component.scss'],
+    selector: 'home-main-category',
+    templateUrl: './main-category.component.html',
+    styleUrls: ['./main-category.component.scss'],
+    standalone: false
 })
 export class MainCategoryComponent  implements OnInit {
 
