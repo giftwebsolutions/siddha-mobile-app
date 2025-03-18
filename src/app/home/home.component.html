@@ -4,6 +4,12 @@
 
 <ion-content [fullscreen]="true">
   <div id="container">
+    <swiper-container #swiper (afterinit)="swiperReady()" (slidechange)="swiperSlideChanged($event)" [loop]="true"
+      [pagination]="true">
+      @for (img of images; track $index) {
+      <swiper-slide><img [src]="img" /></swiper-slide>
+      }
+    </swiper-container>
     <home-main-category></home-main-category>
   </div>
 </ion-content>

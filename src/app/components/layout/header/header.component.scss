@@ -5,3 +5,14 @@ ion-icon {
     padding: 0px 6px;
     cursor: pointer;
 }
+
+ion-searchbar {
+    --background: #FFFFFF;
+    --border-radius: 10px;
+    --border: 1px solid #e4e4e4 !important;
+    --box-shadow: none !important;
+
+    .searchbar-input{
+        background-color: #FFFFFF;
+    }
+}
