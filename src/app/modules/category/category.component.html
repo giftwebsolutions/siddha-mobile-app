@@ -3,38 +3,34 @@
 </ion-header>
 
 <ion-content class="ion-padding" [fullscreen]="true">
-  @if (categories.length > 0) {
-  <ion-grid>
-    <ion-row>
-      @for (category of categories; track category.id; let i = $index) {
-      <ion-col size="6" sizeMd="3">
-        <ion-card [routerLink]="['/categories', category.id]" routerDirection="forward" class="category-card">
+
+
+  @if (categories && categories.length > 0) {
+  @for (category of categories; track category.id; let i = $index) {
+  <div [routerLink]="['/categories', category.id]" class="categories-item mb-2 card" routerDirection="forward">
+    <div class="container gold-members p-3">
+      <div class="row media align-items-center">
+        <div class="col-3 mr-3">
           @if (category.logo?.medium_image_url) {
-          <img [src]="category.logo?.medium_image_url" [alt]="category.name" class="category-image" />
+          <img [src]="category?.logo?.medium_image_url" [alt]="category.name" class="categories-img" />
+          } @else {
+          <img src="assets/placeholder.png" alt="No Image" class="categories-img" />
           }
-          <ion-card-content class="text-center">
-            <div class="fw-bold">{{ i + 1 }}. {{ category.name }}</div>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      }
-    </ion-row>
-  </ion-grid>
+        </div>
+        <div class="col-9 media-body">
+          <p class="text-success m-0">Up to 50% OFF'</p>
+          <h5 class="mb-2 text-dark font-weight-bold">{{ category.name }}</h5>
+          <p class="mb-0 small text-secondary">
+            {{ 'Shop a wide range of products in this category.' }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
   } @else {
   <div class="text-center p-4">
     <ion-text color="medium">No categories available.</ion-text>
-  </div>
-  }
-
-  <!-- Pagination Section -->
-  @if (links.length > 1) {
-  <div class="pagination text-center mt-4">
-    @for (link of links; track link.label) {
-    <ion-button [disabled]="!link.url" [color]="link.active ? 'primary' : 'medium'" size="small"
-      (click)="onPageChangeFromUrl(link.url || '')">
-      {{ link.label }}
-    </ion-button>
-    }
   </div>
   }
 

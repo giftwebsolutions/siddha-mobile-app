@@ -48,4 +48,224 @@
 
 @import "node_modules/bootstrap/dist/css/bootstrap.min.css";
 
+body,
+ion-content,
+ion-label,
+ion-title,
+ion-button,
+ion-input,
+ion-text {
+    font-family: 'Poppins', sans-serif;
+}
 
+p {
+    font-size: 13px;
+    line-height: 22px;
+}
+
+.shop-homepage-item .price ion-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 5px 6px;
+}
+
+.shop-homepage-item {
+    position: relative;
+}
+
+.osahan-nav ion-toolbar {
+    --background: #003049 !important;
+    --color: #fff;
+    --background-color: #003049 !important;
+    --ion-color-base: transparent !important;
+}
+
+ion-item.selected ion-ripple-effect {
+    --background: rgba(233, 97, 37, 0.09) !important;
+}
+
+.osahan-nav {
+    background: #003049 !important;
+}
+
+.osahan-nav ion-title {
+    font-size: 16px;
+    line-height: 18px;
+    padding: 0 6px;
+}
+
+.osahan-nav ion-title small {
+    font-size: 12px;
+}
+
+.shop-cart-item,
+.shop-cart-item-bottom {
+    align-items: center;
+}
+
+.shop-cart-item .shop-cart-left,
+.shop-cart-item-bottom .shop-cart-left {
+    margin: 0 15px 0 0px;
+    width: 82px;
+    flex: none;
+}
+
+.shop-cart-right {
+    width: 100%;
+}
+
+.top-cart ion-badge {
+    position: absolute;
+    padding: 2px;
+    font-size: 11px;
+    top: 0;
+    right: 0;
+    min-width: 15px;
+    height: 15px;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.top-cart ion-icon {
+    font-size: 27px !important;
+    color: #fff;
+}
+
+.shop-homepage-item .shop-cart-left {
+    text-align: center;
+}
+
+.shop-homepage-item .shop-cart-right div.mb-2 {
+    font-size: 12px;
+}
+
+.shop-cart-item .shop-cart-right div.mb-2,
+.shop-cart-item-bottom .shop-cart-right div.mb-2 {
+    font-size: 12px;
+}
+
+.price {
+    font-size: 1.25rem;
+}
+
+.price span {
+    font-size: 12px;
+}
+
+.price ion-badge {
+    font-size: 9px;
+    padding: 3px 4px;
+    vertical-align: middle;
+    margin: 0 0 0 4px;
+}
+
+.shop-cart-value {
+    width: 83px !important;
+}
+
+.shop-cart-value .btn {
+    background: #e96125;
+    color: #fff !important;
+    font-size: 15px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50px;
+    padding: 0;
+}
+
+.shop-cart-value .btn[disabled] {
+    background: #656565;
+}
+
+.shop-cart-value input {
+    border: none;
+    text-align: center;
+    height: 24px;
+}
+
+.categories-item img {
+    width: 109px;
+}
+
+.categories-item p.mb-0.small.text-secondary {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.categories-item .media-body {
+    overflow: hidden;
+}
+
+.card,
+.shop-cart-item,
+.shop-homepage-item,
+.about-card,
+.contact-card,
+.faq-card {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 8px !important;
+    border: none !important;
+    overflow: hidden !important;
+}
+
+ion-card {
+    --box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --border-radius: 8px !important;
+    --border: none !important;
+    --overflow: hidden !important;
+}
+
+ion-searchbar {
+    --border-radius: 8px !important;
+    --box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+.fix-btn {
+    border: none !important;
+    border-radius: 0px !important;
+    font-size: 17px !important;
+    padding: 14px 15px !important;
+}
+
+.fix-btn ion-icon {
+    vertical-align: -2px;
+}
+
+.bg-primary,
+.fix-btn {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#e3641d+0,e96127+100 */
+    background: #e3641d;
+    /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #e3641d 0%, #e96127 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #e3641d 0%, #e96127 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #e3641d 0%, #e96127 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e3641d', endColorstr='#e96127', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+}
+
+.faq-card ion-card-title {
+    font-size: 16px;
+}
+
+.faq-card ion-card-content {
+    font-size: 13px;
+    line-height: 21px;
+}
+
+.faq-card ion-card-header {
+    padding-bottom: 9px;
+}
+
+.my-profile-page .list-group-item {
+    font-size: 13px;
+    padding: 15px 15px;
+}
+
+.list-group-item.active {
+    color: #fff !important;
+}
