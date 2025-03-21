@@ -8,10 +8,12 @@ const routes: Routes = [
   },
   {
     path: 'cart', loadChildren: () => import('./modules/cart/cart.module').then(m => m.CartModule)
-  }
-  ,
+  },
   {
     path: 'checkout', loadChildren: () => import('./modules/checkout/checkout.module').then(m => m.CheckoutModule)
+  },
+  {
+    path: 'product', loadChildren: () => import('./modules/product/product.module').then(m => m.ProductModule)
   }
 ];
 

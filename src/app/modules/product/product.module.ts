@@ -1,8 +1,10 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ListComponent } from './list/list.component';
 import { ProductComponent } from './product.component';
+import { IonicModule } from '@ionic/angular';
+import { LayoutModule } from '../../components/layout/layout.module';
 
 const routes: Routes = [
   {
@@ -16,10 +18,16 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ProductComponent,
+    ListComponent,
+  ],
   imports: [
     CommonModule,
+    IonicModule,
+    LayoutModule,
     RouterModule.forChild(routes)
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ProductModule { }
