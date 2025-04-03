@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppInitService } from './core/services/appinit.services';
 import { AppInterceptor } from './core/interceptors/app.interceptor';
 import { HomeModule } from './home/home.module';
-
+import { AuthModule } from './modules/auth/auth.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -24,6 +24,7 @@ import { HomeModule } from './home/home.module';
     ReactiveFormsModule,
     HttpClientModule, // Add HttpClientModule here
     HomeModule,
+    AuthModule
   ],
   providers: [
     AuthenticationService,

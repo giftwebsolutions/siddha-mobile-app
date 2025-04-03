@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+
+
+
 const routes: Routes = [
   { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
   {
@@ -14,10 +17,16 @@ const routes: Routes = [
   },
   {
     path: 'product', loadChildren: () => import('./modules/product/product.module').then(m => m.ProductModule)
-  }
+  },
+  {
+    path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+  },
+  // Route for login
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirect root to login
 ];
 
 @NgModule({
+  declarations: [],
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],

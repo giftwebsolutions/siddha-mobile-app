@@ -1,3 +1,144 @@
-<p>
-  cart works!
-</p>
+<ion-header class="osahan-nav">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Single Product
+    </ion-title>
+    <ion-buttons [routerLink]="['/cart']" slot="primary">
+      <ion-button class="top-cart" color="primary">
+        <ion-badge color="primary">3</ion-badge>
+        <ion-icon slot="start" name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="single-page" color="light">
+  
+  <div class="card mb-2">
+     <div class="p-3">
+        <div class="d-flex justify-content-between mb-2">
+           <div class="text-secondary">M.R.P.</div>
+           <div class="text-secondary">$233,00</div>
+        </div>
+        <div class="d-flex justify-content-between mb-2">
+           <div class="text-secondary">Products Discount</div>
+           <div class="text-success">-$40,00</div>
+        </div>
+        <div class="d-flex justify-content-between mb-2">
+           <div class="text-info">
+              <ion-icon name="cash-outline"></ion-icon>
+              Club Member Savings
+           </div>
+           <div class="text-secondary">Not a member</div>
+        </div>
+        <div class="d-flex justify-content-between">
+           <div class="text-secondary">
+              Delivery Charges 
+              <ion-icon class="text-danger" name="help-circle-outline"></ion-icon>
+           </div>
+           <div class="text-danger">+$90,00</div>
+        </div>
+     </div>
+     <div class="d-flex justify-content-between align-items-center py-3 px-3 border-top text-dark">
+        <h6 class="font-weight-bold m-0">Sub Total</h6>
+        <h6 class="font-weight-bold m-0">$433,00</h6>
+     </div>
+  </div>
+  <div class="card mb-2">
+     <div [routerLink]="['/singleproduct']" class="d-flex p-3 shop-cart-item-bottom border-bottom">
+        <div class="shop-cart-left">
+           <img alt="img" class="not-found-img" src="assets/small/7.jpg">
+        </div>
+        <div class="shop-cart-right">
+           <h6 class="font-weight-bold text-dark mb-2 price">$600.99 <span class="regular-price text-secondary font-weight-normal">$800.99</span></h6>
+           <div class="mb-2">Surf Excel Matic Top Load Detergent Powder (Carton)
+           </div>
+           <div class="small text-gray-500 d-flex align-items-center justify-content-between">
+              <small class="text-secondary">2 Kg</small>
+              <div class="input-group shop-cart-value">
+                 <span class="input-group-btn"><button disabled="disabled" class="btn btn-sm" type="button">-</button></span>
+                 <input type="text" max="10" min="1" value="1" class="form-control border-form-control form-control-sm input-number" name="quant[1]">
+                 <span class="input-group-btn"><button class="btn btn-sm" type="button">+</button>
+                 </span>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div [routerLink]="['/singleproduct']" class="d-flex p-3 shop-cart-item-bottom border-bottom">
+        <div class="shop-cart-left">
+           <img alt="img" class="not-found-img" src="assets/small/6.jpg">
+        </div>
+        <div class="shop-cart-right">
+           <h6 class="font-weight-bold text-dark mb-2 price">
+              $456.99 <span class="regular-price text-secondary font-weight-normal">$787.99</span> 
+              <ion-badge color="success">5% OFF</ion-badge>
+           </h6>
+           <div class="mb-2">Hygienix Anti-Bacterial Hand Sanitizer (Bottle)
+           </div>
+           <div class="small text-gray-500 d-flex align-items-center justify-content-between">
+              <small class="text-secondary">300 ml</small>
+              <div class="input-group shop-cart-value">
+                 <span class="input-group-btn"><button disabled="disabled" class="btn btn-sm" type="button">-</button></span>
+                 <input type="text" max="10" min="1" value="1" class="form-control border-form-control form-control-sm input-number" name="quant[1]">
+                 <span class="input-group-btn"><button class="btn btn-sm" type="button">+</button>
+                 </span>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div [routerLink]="['/singleproduct']" class="d-flex p-3 shop-cart-item-bottom border-bottom">
+        <div class="shop-cart-left">
+           <img alt="img" class="not-found-img" src="assets/small/11.jpg">
+        </div>
+        <div class="shop-cart-right">
+           <h6 class="font-weight-bold text-dark mb-2 price">$600.99 <span class="regular-price text-secondary font-weight-normal">$800.99</span></h6>
+           <div class="mb-2">Surf Excel Matic Top Load Detergent Powder (Carton)
+           </div>
+           <div class="small text-gray-500 d-flex align-items-center justify-content-between">
+              <small class="text-secondary">2 Kg</small>
+              <div class="input-group shop-cart-value">
+                 <span class="input-group-btn"><button disabled="disabled" class="btn btn-sm" type="button">-</button></span>
+                 <input type="text" max="10" min="1" value="1" class="form-control border-form-control form-control-sm input-number" name="quant[1]">
+                 <span class="input-group-btn"><button class="btn btn-sm" type="button">+</button>
+                 </span>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div [routerLink]="['/singleproduct']" class="d-flex p-3 shop-cart-item ">
+        <div class="shop-cart-left">
+           <img alt="img" class="not-found-img" src="assets/small/2.jpg">
+        </div>
+        <div class="shop-cart-right">
+           <h6 class="font-weight-bold text-dark mb-2 price">
+              $456.99 <span class="regular-price text-secondary font-weight-normal">$787.99</span> 
+              <ion-badge color="success">5% OFF</ion-badge>
+           </h6>
+           <div class="mb-2">Hygienix Anti-Bacterial Hand Sanitizer (Bottle)
+           </div>
+           <div class="small text-gray-500 d-flex align-items-center justify-content-between">
+              <small class="text-secondary">300 ml</small>
+              <div class="input-group shop-cart-value">
+                 <span class="input-group-btn"><button disabled="disabled" class="btn btn-sm" type="button">-</button></span>
+                 <input type="text" max="10" min="1" value="1" class="form-control border-form-control form-control-sm input-number" name="quant[1]">
+                 <span class="input-group-btn"><button class="btn btn-sm" type="button">+</button>
+                 </span>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</ion-content>
+<ion-footer class="border-0">
+  <button [routerLink]="['/checkout']" class="btn btn-primary btn-lg fix-btn btn-block text-left" type="button">
+     <span class="float-left">
+        <ion-icon name="cart-outline"></ion-icon>
+        Proceed to Checkout 
+     </span>
+     <span class="float-right">
+        <strong>$1200.69</strong> 
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+     </span>
+  </button>
+</ion-footer>
