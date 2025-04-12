@@ -1,0 +1,72 @@
+<ion-header class="osahan-nav">
+  <ion-toolbar>
+     <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+     </ion-buttons>
+     <ion-title>My Profile
+     </ion-title>
+     <ion-buttons [routerLink]="['/categories']" slot="primary">
+        <ion-button>
+           <ion-icon slot="icon-only" name="list"></ion-icon>
+        </ion-button>
+     </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding my-profile-page" color="light">
+  <div class="mb-2 card bg-white profile-box text-center">
+     <div class="py-4 px-3 border-bottom">
+        <img alt="img" class="img-fluid mt-2 rounded-circle" src="assets/user/1.jpg">
+        <h5 class="font-weight-bold text-dark mb-1 mt-4">Gurdeep Osahan</h5>
+        <p class="mb-0 text-muted">iamosahan&#64;gmail.com</p>
+     </div>
+     <div class="d-flex">
+        <div [routerLink]="['/myaddress']" class="col-6 border-right p-3">
+           <h6 class="font-weight-bold text-dark mb-1">
+              <ion-icon name="navigate-circle-outline"></ion-icon>
+           </h6>
+           <p class="mb-0 text-black-50 small">Edit Address</p>
+        </div>
+        <div [routerLink]="['/editprofile']" class="col-6 p-3">
+           <h6 class="font-weight-bold text-dark mb-1">
+              <ion-icon name="person-circle-outline"></ion-icon>
+           </h6>
+           <p class="mb-0 text-black-50 small">Edit Profile</p>
+        </div>
+     </div>
+     <div [routerLink]="['/mywallet']" class="overflow-hidden border-top p-3 d-flex justify-content-between align-items-center">
+        <small class="text-secondary font-weight-bold">
+           <ion-icon name="wallet-outline"></ion-icon>
+           My Balance:
+        </small>
+        <small class="text-primary font-weight-bold">$4,543,00</small>
+     </div>
+  </div>
+  <div class="list-group">
+     <a class="list-group-item list-group-item-action active">
+        <ion-icon class="mr-2" name="person-outline"></ion-icon>
+        My Profile
+     </a>
+     <a [routerLink]="['/myaddress']" class="list-group-item list-group-item-action">
+        <ion-icon class="mr-2" name="location-outline"></ion-icon>
+        My Address
+     </a>
+     <a [routerLink]="['/wishlist']" class="list-group-item list-group-item-action">
+        <ion-icon class="mr-2" name="heart-outline"></ion-icon>
+        Wish List 
+     </a>
+     <a [routerLink]="['/orderlist']" class="list-group-item list-group-item-action">
+        <ion-icon class="mr-2" name="list-outline"></ion-icon>
+        Order List
+     </a>
+     <a [routerLink]="['/mywallet']" class="list-group-item list-group-item-action">
+        <ion-icon class="mr-2" name="wallet-outline"></ion-icon>
+        My wallet
+     </a>
+  </div>
+</ion-content>
+<ion-footer class="border-0">
+  <ion-button [routerLink]="['/checkout']" size="large" class="button-block p-0 m-0" expand="full" color="primary">
+     <ion-icon name="lock-closed-outline"></ion-icon>
+     Logout
+  </ion-button>
+</ion-footer>
