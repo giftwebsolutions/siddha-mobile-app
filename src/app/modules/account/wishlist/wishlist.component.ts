@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-wishlist',
   templateUrl: './wishlist.component.html',
   styleUrls: ['./wishlist.component.scss'],
+  standalone:false,
 })
 export class WishlistComponent  implements OnInit {
 

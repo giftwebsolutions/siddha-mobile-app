@@ -1,0 +1,85 @@
+<ion-header class="osahan-nav">
+   <ion-toolbar>
+      <ion-buttons slot="start">
+         <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>My Address
+      </ion-title>
+      <ion-buttons [routerLink]="['/checkout/tab1']" slot="primary">
+         <ion-button>
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+         </ion-button>
+      </ion-buttons>
+   </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding my-address-page" color="light">
+   <div class="addresses-item mb-2 card border-primary">
+      <div class="gold-members p-3">
+         <div class="media">
+            <div class="mr-3">
+               <ion-icon size="large" name="home-outline"></ion-icon>
+            </div>
+            <div class="media-body">
+               <h5 class="mb-2 text-dark font-weight-bold">Home</h5>
+               <p class="text-secondary">Osahan House, Jawaddi Kalan, Ludhiana, Punjab 141002, India</p>
+               <p class="mb-0 small">
+                  <a [routerLink]="['/checkout/tab1']" class="text-primary mr-3">
+                     <ion-icon name="create-outline"></ion-icon>
+                     EDIT
+                  </a>
+                  <a class="text-danger">
+                     <ion-icon name="trash-outline"></ion-icon>
+                     DELETE
+                  </a>
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="addresses-item mb-2 card">
+      <div class="gold-members p-3">
+         <div class="media">
+            <div class="mr-3">
+               <ion-icon size="large" name="briefcase-outline"></ion-icon>
+            </div>
+            <div class="media-body">
+               <h5 class="mb-2 text-dark font-weight-bold">Work</h5>
+               <p class="text-secondary">NCC, Model Town Rd, Pritm Nagar, Model Town, Ludhiana, Punjab 141002, India</p>
+               <p class="mb-0 small">
+                  <a [routerLink]="['/checkout/tab1']" class="text-primary mr-3">
+                     <ion-icon name="create-outline"></ion-icon>
+                     EDIT
+                  </a>
+                  <a class="text-danger">
+                     <ion-icon name="trash-outline"></ion-icon>
+                     DELETE
+                  </a>
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="addresses-item mb-2 card">
+      <div class="gold-members p-3">
+         <div class="media">
+            <div class="mr-3">
+               <ion-icon size="large" name="navigate-outline"></ion-icon>
+            </div>
+            <div class="media-body">
+               <h5 class="mb-2 text-dark font-weight-bold">Other</h5>
+               <p class="text-secondary">GTTT, Model Town Rd, Pritm Nagar, Model Town, Ludhiana, Punjab 141002, India</p>
+               <p class="mb-0 small">
+                  <a [routerLink]="['/checkout/tab1']" class="text-primary mr-3">
+                     <ion-icon name="create-outline"></ion-icon>
+                     EDIT
+                  </a>
+                  <a class="text-danger">
+                     <ion-icon name="trash-outline"></ion-icon>
+                     DELETE
+                  </a>
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+</ion-content>

@@ -73,6 +73,13 @@ p {
 .shop-homepage-item {
     position: relative;
 }
+.list-group-item.active {
+    z-index: 2;
+    color: var(--bs-list-group-active-color);
+    background: var(--ion-color-primary);
+    border-color: var(--bs-list-group-active-border-color);
+  }
+  
 
 .osahan-nav ion-toolbar {
     --background: #003049 !important;

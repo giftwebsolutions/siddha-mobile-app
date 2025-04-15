@@ -5,6 +5,8 @@ import { MyaddressComponent } from './myaddress/myaddress.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { IonicModule } from '@ionic/angular';
 import { LayoutModule } from '../../components/layout/layout.module';
+import { OrderlistComponent } from './orderlist/orderlist.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 const routes: Routes = [
    
@@ -13,8 +15,16 @@ const routes: Routes = [
       component: MyprofileComponent
     },
     {
-      path: '',
+      path: 'myaddress',
       component: MyaddressComponent
+    },
+    {
+      path: 'orderlist',
+      component: OrderlistComponent
+    },
+    {
+      path: 'wishlist',
+      component: WishlistComponent
     },
 
 
@@ -22,6 +32,10 @@ const routes: Routes = [
 @NgModule({
   declarations: [
      MyprofileComponent,
+     MyaddressComponent,
+     OrderlistComponent,
+     WishlistComponent
+
   ],
   imports: [
     CommonModule,
