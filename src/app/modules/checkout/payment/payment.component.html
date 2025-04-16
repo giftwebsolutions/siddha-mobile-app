@@ -1,0 +1,47 @@
+<ion-header class="osahan-nav">
+   <ion-toolbar>
+      <ion-buttons slot="start">
+         <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>Payment</ion-title>
+   </ion-toolbar>
+ </ion-header>
+ <ion-content class="ion-padding" color="light">
+   <div class="rounded shadow-sm mb-2 bg-white text-center">
+      <img alt="img" src="assets/payment_methods.png">
+   </div>
+   <div class="card">
+      <form onsubmit="processForm(event)">
+         <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item>
+               <ion-label position="stacked">
+                  Card Number 
+                  <ion-text color="danger">*</ion-text>
+               </ion-label>
+               <ion-input placeholder="Enter Card Number" required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+            </ion-item>
+            <ion-item>
+               <ion-label position="stacked">
+                  mm/yy (Valid Thru) 
+                  <ion-text color="danger">*</ion-text>
+               </ion-label>
+               <ion-input placeholder="Enter mm/yy" required type="number" oninput="handleFirstNameValue(event)"></ion-input>
+            </ion-item>
+            <ion-item>
+               <ion-label position="stacked">
+                  CVV 
+                  <ion-text color="danger">*</ion-text>
+               </ion-label>
+               <ion-input placeholder="Enter CVV" required type="number" oninput="handleFirstNameValue(event)"></ion-input>
+            </ion-item>
+            <ion-item>
+               <ion-label position="stacked">Nickname (Optional)</ion-label>
+               <ion-input placeholder="Enter Nickname" required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+            </ion-item>
+         </ion-list>
+         <div class="ion-padding">
+            <ion-button [routerLink]="['/checkout/tab3']" expand="block" type="submit" class="ion-no-margin">SAVE</ion-button>
+         </div>
+      </form>
+   </div>
+ </ion-content>

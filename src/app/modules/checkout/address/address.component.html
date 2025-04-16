@@ -1,0 +1,66 @@
+<ion-header class="osahan-nav">
+   <ion-toolbar>
+      <ion-buttons slot="start">
+         <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>Delivery Address</ion-title>
+   </ion-toolbar>
+ </ion-header>
+ <ion-content class="ion-padding" color="light">
+   <div class="card">
+      <form onsubmit="processForm(event)">
+         <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item>
+               <ion-label position="stacked">
+                  Name 
+                  <ion-text color="danger">*</ion-text>
+               </ion-label>
+               <ion-input placeholder="Enter Name" required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+            </ion-item>
+            <ion-item>
+               <ion-label position="stacked">
+                  Flat/House/Office No. 
+                  <ion-text color="danger">*</ion-text>
+               </ion-label>
+               <ion-input placeholder="Enter Flat/House/Office.." required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+            </ion-item>
+            <ion-item>
+               <ion-label position="stacked">
+                  Street/Society/Office Name 
+                  <ion-text color="danger">*</ion-text>
+               </ion-label>
+               <ion-input placeholder="Enter Street/Society/Office..." required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+            </ion-item>
+            <ion-item>
+               <ion-label position="stacked">
+                  Locality 
+                  <ion-text color="danger">*</ion-text>
+               </ion-label>
+               <ion-input placeholder="Enter Locality" required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+            </ion-item>
+         </ion-list>
+         <ion-list>
+            <ion-radio-group allow-empty-selection value="anchovies">
+               <ion-list-header>
+                  <ion-label>Nickname of your address</ion-label>
+               </ion-list-header>
+               <ion-item>
+                  <ion-label>Home</ion-label>
+                  <ion-radio slot="end" color="primary" value="Home"></ion-radio>
+               </ion-item>
+               <ion-item>
+                  <ion-label>Office</ion-label>
+                  <ion-radio slot="end" color="primary" value="Office"></ion-radio>
+               </ion-item>
+               <ion-item>
+                  <ion-label>Others</ion-label>
+                  <ion-radio slot="end" color="primary" value="Others"></ion-radio>
+               </ion-item>
+            </ion-radio-group>
+         </ion-list>
+         <div class="ion-padding">
+            <ion-button [routerLink]="['/checkout/tab2']" expand="block" type="submit" class="ion-no-margin">SAVE</ion-button>
+         </div>
+      </form>
+   </div>
+ </ion-content>

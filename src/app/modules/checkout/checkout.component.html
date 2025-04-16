@@ -1,3 +1,56 @@
-<p>
-  checkout works!
-</p>
+<ion-header class="osahan-nav">
+  <ion-toolbar>
+     <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+     </ion-buttons>
+     <ion-title>Login
+     </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding shop-cart-page" color="light">
+  <div class="card mb-2">
+     <div class="border-bottom text-center p-3">We will send an SMS with a confirmation code to this number</div>
+     <div class="p-3">
+        <form class="card" onsubmit="processForm(event)">
+           <ion-list lines="full" class="ion-no-margin ion-no-padding">
+              <ion-item>
+                 <ion-label position="stacked">
+                    Phone Number 
+                    <ion-text color="danger">*</ion-text>
+                 </ion-label>
+                 <ion-input placeholder="Enter Phone Number" required type="number" oninput="handleFirstNameValue(event)"></ion-input>
+              </ion-item>
+           </ion-list>
+           <ion-list lines="full" class="ion-no-margin ion-no-padding">
+              <ion-item>
+                 <ion-label position="stacked">Use your referral code here</ion-label>
+                 <ion-input placeholder="Enter Code" required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+              </ion-item>
+           </ion-list>
+        </form>
+     </div>
+     <div class="p-3 border-top">
+        <ion-button [routerLink]="['tab1']" routerDirection="forward" expand="block" type="submit" class="ion-no-margin">Next</ion-button>
+     </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+     <ion-tabs>
+        <ion-tab-bar slot="bottom">
+           <ion-tab-button [routerLink]="['address']" routerDirection="forward">
+              <ion-icon name="person-circle-outline"></ion-icon>
+              <ion-label>Address</ion-label>
+           </ion-tab-button>
+           <ion-tab-button [routerLink]="['Payment']" routerDirection="forward">
+              <ion-icon name="navigate-circle-outline"></ion-icon>
+              <ion-label>Payment</ion-label>
+           </ion-tab-button>
+           <ion-tab-button [routerLink]="['Complete']" routerDirection="forward">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+              <ion-label>Complete</ion-label>
+           </ion-tab-button>
+        </ion-tab-bar>
+     </ion-tabs>
+  </ion-toolbar>
+</ion-footer>
