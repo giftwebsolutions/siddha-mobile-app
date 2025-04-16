@@ -5,6 +5,7 @@ import { CategoryComponent } from './category.component';
 import { SubcategoryComponent } from './subcategory/subcategory.component';
 import { IonicModule } from '@ionic/angular';
 import { LayoutModule } from '../../components/layout/layout.module';
+import { ListComponent } from './list/list.component';
 
 const routes: Routes = [
   {
@@ -13,13 +14,14 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: SubcategoryComponent
+    component: ListComponent
   }
 ];
 @NgModule({
   declarations: [
     CategoryComponent,
     SubcategoryComponent,
+    ListComponent,
   ],
   imports: [
     CommonModule,

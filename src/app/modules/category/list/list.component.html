@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <app-header></app-header>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+
+  @if (products && products.length > 0) {
+    @for(product of products; track product.id; let i = $index) {
+    <div [routerLink]="['/product/1']" class="d-flex p-3 shop-cart-item bg-white mb-2">
+      <div class="shop-cart-left">
+        <img alt="img" class="not-found-img" src="{{product.images[0].small_image_url}}">
+      </div>
+      <div class="shop-cart-right">
+        <div [innerHTML]="product.price_html"></div>
+        <h6 class="font-weight-bold text-dark mb-2 price">
+          $456.99 <span class="regular-price text-secondary font-weight-normal">$787.99</span>
+          <ion-badge color="success">5% OFF</ion-badge>
+        </h6>
+        <div class="mb-2">{{product.name}}
+        </div>
+        <div class="small text-gray-500 d-flex align-items-center justify-content-between">
+          <small class="text-secondary">300 ml</small>
+          <div class="input-group shop-cart-value">
+            <span class="input-group-btn"><button disabled="disabled" class="btn btn-sm" type="button">-</button></span>
+            <input type="text" max="10" min="1" value="1"
+              class="form-control border-form-control form-control-sm input-number" name="quant[1]">
+            <span class="input-group-btn"><button class="btn btn-sm" type="button">+</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  }
+</ion-content>
