@@ -1,0 +1,37 @@
+<ion-header class="osahan-nav">
+   <ion-toolbar>
+      <ion-buttons slot="start">
+         <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>About Us
+      </ion-title>
+   </ion-toolbar>
+ </ion-header>
+ <ion-content color="light">
+   <img alt="img" class="not-found-img" src="assets/about.jpg">
+   <ion-card class="about-card ion-padding">
+      <ion-text class="ion-color ion-color-primary">
+         <h3 class="mt-0 mb-4 ion-color-primary">Save more with GO! We give you the lowest prices on all your grocery needs.</h3>
+      </ion-text>
+      <h5 class="mt-2 text-dark">Our Vision</h5>
+      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,</p>
+      <h5 class="mt-4 text-dark">Our Goal</h5>
+      <p>When looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+   </ion-card>
+ </ion-content>
+ <ion-footer>
+   <ion-toolbar>
+      <ion-tabs>
+         <ion-tab-bar slot="bottom">
+            <ion-tab-button [routerLink]="['tabone']" routerDirection="forward">
+               <ion-icon name="lock-closed"></ion-icon>
+               <ion-label>Privacy & Policy</ion-label>
+            </ion-tab-button>
+            <ion-tab-button [routerLink]="['tabtwo']" routerDirection="forward">
+               <ion-icon name="folder-open"></ion-icon>
+               <ion-label>Terms & conditions</ion-label>
+            </ion-tab-button>
+         </ion-tab-bar>
+      </ion-tabs>
+   </ion-toolbar>
+ </ion-footer>
