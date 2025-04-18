@@ -1,0 +1,9 @@
+{
+    "iconPath": "./resources/icon.png",
+    "splashPath": "./resources/splash.png",
+    "backgroundColor": "#ffffff",
+    "platforms": [
+        "android",
+        "ios"
+    ]
+}
