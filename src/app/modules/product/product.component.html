@@ -1,136 +1,109 @@
-<ion-header class="osahan-nav">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Single Product
-    </ion-title>
-    <ion-buttons [routerLink]="['/shoppingcart']" slot="primary">
-      <ion-button class="top-cart" color="primary">
-        <ion-badge color="primary">3</ion-badge>
-        <ion-icon slot="start" name="cart-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+<ion-header [translucent]="true" class="osahan-nav">
+  <app-header></app-header>
 </ion-header>
 <ion-content class="single-page" color="light">
-  <swiper-container #swiper (afterinit)="swiperReady()" (slidechange)="swiperSlideChanged($event)" [loop]="true"
-    [pagination]="true">
-    @for (img of images; track $index) {
-    <swiper-slide><img [src]="img" /></swiper-slide>
-    }
-  </swiper-container>
+  @if(images && images.length > 0) {
+    <swiper-container #swiper (afterinit)="swiperReady()" (slidechange)="swiperSlideChanged($event)" [loop]="true"
+      [pagination]="true">
+      @for (img of images; track $index) {
+      <swiper-slide><img [src]="img.medium_image_url" /></swiper-slide>
+      }
+    </swiper-container>
+  }
   <div class="p-3">
     <div class="mb-2 card p-3 single-page-info">
-      <div>
-        <div class="single-page-shop">
-          <h5 class="mb-1">Hygienix Anti-Bacterial Hand Sanitizer (Bottle)
-          </h5>
-          <small class="text-secondary">
-            <strong>
-              <ion-icon name="checkmark-circle-outline"></ion-icon>
-              Available in
-            </strong>
-            - 500 gm
-          </small>
-          <h6 class="font-weight-bold text-dark mb-3 mt-2">
-            $456.99 <span class="regular-price text-secondary font-weight-normal">$787.99</span>
-            <ion-badge color="success">5% OFF</ion-badge>
-          </h6>
-          <div class="small text-gray-500 d-flex align-items-center justify-content-between">
-            <div class="text-success">
-              <ion-icon name="star-outline"></ion-icon>
-              4.4
-            </div>
-            <div class="input-group shop-cart-value">
-              <span class="input-group-btn"><button disabled="disabled" class="btn btn-sm"
-                  type="button">-</button></span>
-              <input type="text" max="10" min="1" value="1"
-                class="form-control border-form-control form-control-sm input-number" name="quant[1]">
-              <span class="input-group-btn"><button class="btn btn-sm" type="button">+</button>
-              </span>
-            </div>
+      <div class="single-page-shop">
+        <h5 class="mb-1">{{ product?.name }}</h5>
+        <small class="text-secondary">
+          <strong><ion-icon name="checkmark-circle-outline"></ion-icon> Available</strong>
+          - {{ product?.quantity }} units
+        </small>
+  
+        <h6 class="font-weight-bold text-dark mb-3 mt-2">
+          {{ product?.prices?.final?.formatted_price }}
+          <span class="regular-price text-secondary font-weight-normal">
+            {{ product?.prices?.regular?.formatted_price }}
+          </span>
+          <ion-badge color="success">5% OFF</ion-badge>
+        </h6>
+  
+        <div class="small text-gray-500 d-flex align-items-center justify-content-between">
+          <div class="text-success">
+            <ion-icon name="star-outline"></ion-icon>
+            {{ product?.ratings?.average || '0.0' }}
+          </div>
+  
+          <div class="input-group shop-cart-value">
+            <span class="input-group-btn">
+              <button class="btn btn-sm" type="button" [disabled]="quantity <= 1"
+                (click)="quantity = quantity - 1">-</button>
+            </span>
+            <input type="text" [value]="quantity" class="form-control border-form-control form-control-sm input-number"
+              readonly>
+            <span class="input-group-btn">
+              <button class="btn btn-sm" type="button" (click)="quantity = quantity + 1">+</button>
+            </span>
           </div>
         </div>
       </div>
     </div>
+  
     <div class="mb-2 card p-3 single-page-info">
       <div class="short-description">
-        <small class="float-right">Availability: <span class="badge badge-success">In Stock</span></small>
-        <h6 class="font-weight-bold mb-3">
-          Quick Overview
-        </h6>
-        <p class="text-secondary"><b>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b> Nam fringilla augue
-          nec est tristique auctor. Donec non est at libero vulputate rutrum.
-        </p>
-        <p class="mb-0 text-secondary"> Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada
-          tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hiMenaeos. Integer
-          enim purus, posuere at ultricies eu, placerat a felis. Suspendisse aliquet urna pretium eros convallis
-          interdum.</p>
+        <small class="float-right">Availability:
+          <span class="badge badge-success">{{ product?.is_saleable ? 'In Stock' : 'Out of Stock' }}</span>
+        </small>
+        <h6 class="font-weight-bold mb-3">Quick Overview</h6>
+        <div class="text-secondary" [innerHTML]="product?.description"></div>
       </div>
     </div>
+  
     <div class="card mb-2 single-page-info">
       <ion-accordion-group>
-        <ion-accordion value="first">
+        <ion-accordion value="description">
           <ion-item slot="header" color="light">
             <ion-label>Description</ion-label>
           </ion-item>
           <div class="ion-padding" slot="content">
-            <p>Atatotai Manappagu is a powerful Siddha herbal medicine known for its holistic healing properties. It is
-              crafted using a
-              blend of ancient medicinal herbs that help boost the immune system, improve digestion, and enhance
-              respiratory function.</p>
-
-            <p>Traditionally used in Siddha medicine, this herbal syrup is beneficial for managing cough, cold,
-              digestive disorders,
-              fatigue, and general weakness. It also helps maintain blood sugar levels, supports heart health, and
-              promotes mental
-              clarity.</p>
-
-            <p>A natural and effective health supplement, Atatotai Manappagu is perfect for individuals seeking overall
-              wellness,
-              strength, and energy through traditional herbal remedies.</p>
+            <div [innerHTML]="product?.description"></div>
           </div>
         </ion-accordion>
-        <ion-accordion value="second">
+  
+        <ion-accordion value="benefits">
           <ion-item slot="header" color="light">
-            <ion-label>Benifits</ion-label>
+            <ion-label>Benefits</ion-label>
           </ion-item>
           <div class="ion-padding" slot="content">
             <ul>
-              <li> Strengthens immune system and respiratory function</li>
-              <li> Aids digestion and relieves digestive discomfort</li>
-              <li> Supports energy levels and reduces general weakness</li>
-              <li> Helps manage cold, cough, and fatigue</li>
-              <li> Promotes heart health and mental clarity</li>
-              <li>Assists in maintaining healthy blood sugar levels</li>
-              <li> 100% natural, chemical-free, and safe for all age groups</li>
+              <li>Dynamic content — bind from `product.benefits` if available.</li>
             </ul>
           </div>
         </ion-accordion>
-        <ion-accordion value="third">
+  
+        <ion-accordion value="how-to-use">
           <ion-item slot="header" color="light">
             <ion-label>How To Use</ion-label>
           </ion-item>
-          <div class="ion-padding" slot="content">Third Content</div>
+          <div class="ion-padding" slot="content">
+            Add instructions here if you store it in your product model.
+          </div>
         </ion-accordion>
       </ion-accordion-group>
     </div>
   </div>
-</ion-content>
-<ion-footer class="border-0">
-  <div class="d-grid gap-2">
-    <button [routerLink]="['/checkout']"
-      class="btn btn-primary btn-lg btn-block d-flex justify-content-between fix-btn align-items-center" type="button">
-      <span class="text-start d-flex align-items-center gap-1">
-        <ion-icon name="cart-outline"></ion-icon>
-        Add to cart
-      </span>
-
-      <span class="text-end d-flex align-items-center gap-1">
-        <strong>$1200.69</strong>
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </span>
-    </button>
-  </div>
-</ion-footer>
+  </ion-content>
+  
+  <ion-footer class="border-0">
+    <div class="d-grid gap-2">
+      <button [routerLink]="['/checkout']"
+        class="btn btn-primary btn-lg btn-block d-flex justify-content-between fix-btn align-items-center" type="button">
+        <span class="text-start d-flex align-items-center gap-1">
+          <ion-icon name="cart-outline"></ion-icon> Add to cart
+        </span>
+        <span class="text-end d-flex align-items-center gap-1">
+          <strong>{{ product?.prices?.final?.formatted_price }}</strong>
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </span>
+      </button>
+    </div>
+  </ion-footer>

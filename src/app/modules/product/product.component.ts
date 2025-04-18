@@ -1,27 +1,39 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import Swiper from 'swiper';
+import { ActivatedRoute } from '@angular/router';
+import { ProductService } from './product.service';
+import { Product, ProductImage } from './product.model';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
-  'standalone' : false,
+  'standalone': false,
 })
-export class ProductComponent  implements OnInit {
+export class ProductComponent implements OnInit {
 
   @ViewChild('swiper')
   swiperRef: ElementRef | undefined;
   swiper?: Swiper;
 
-  images = [
-    'https://images.unsplash.com/photo-1580927752452-89d86da3fa0a',
-    'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
-    'https://images.unsplash.com/photo-1461749280684-dccba630e2f6',
-    'https://images.unsplash.com/photo-1488229297570-58520851e868',
-  ];
+  product: Product | null = null;
+  quantity: number = 1;
+  images: ProductImage[] = [];
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    if (id) {
+      this.productService.getProductById(id).subscribe(product => {
+        this.product = product;
+        this.images = product.images;
+        console.log(product);
+      });
+    }
+  }
 
   swiperSlideChanged(e: any) {
     console.log('changed: ', e);

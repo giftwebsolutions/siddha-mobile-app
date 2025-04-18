@@ -1,0 +1,16 @@
+.shop-cart-item {
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.shop-cart-left img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.shop-cart-right {
+    flex: 1;
+    padding-left: 1rem;
+}

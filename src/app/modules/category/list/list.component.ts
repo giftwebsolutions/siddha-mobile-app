@@ -1,8 +1,9 @@
-import { PaginatedResponse, Meta, Link } from '../../../core/models/response';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ProductService } from '../../product/product.service';
+import { ProductResponse, Product } from '../../product/product.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -10,46 +11,74 @@ import { ProductService } from '../../product/product.service';
   styleUrls: ['./list.component.scss'],
   standalone: false
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
 
-  public products: any = [];
-  public meta: Meta | null = null;
-  public links: Link[] = [];
+  public products: Product[] = [];
+  public currentPage = 1;
+  public hasMore = true;
   private destroy$ = new Subject<void>();
+  public categoryId: string | null = null;
 
   constructor(
-    private productService: ProductService
-  ) { }
+    private route: ActivatedRoute,
+    private productService: ProductService) { }
 
-  ngOnInit() { 
-    this.getProducts(1)
+  ngOnInit(): void {
+    this.categoryId = this.route.snapshot.paramMap.get('id');
+    this.loadProducts();
   }
 
-  getProducts(page: number): void {
-    this.productService.getProductList(page)
+  loadProducts(): void {
+    if (!this.hasMore) return;
+    if (this.categoryId == null) return;
+    this.productService.getProductListByCategoryId(this.categoryId, this.currentPage)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (response: PaginatedResponse<[]>) => {
-          console.log(response);
-          this.products = response.data;
-          this.meta = response.meta || null;
-          this.links = response.meta?.links ?? [];
-        },
-        error: (err) => {
-          console.error('Category fetch error:', err.message || err);
+        next: (response: ProductResponse) => {
+          const productsWithQty = response.data.map(p => ({
+            ...p,
+            quantity: 1, // initialize default quantity
+          }));
+          this.products.push(...productsWithQty);
+          this.currentPage++;
+          this.hasMore = !!response.links?.next;
         }
       });
   }
 
-  onPageChange(page: number): void {
-    this.getProducts(page);
+  increaseQty(index: number): void {
+    if (this.products[index].quantity < 10) {
+      this.products[index].quantity += 1;
+    }
   }
 
-  onPageChangeFromUrl(url: string | null): void {
-    if (!url) return;
-    const pageMatch = url.match(/page=(\d+)/);
-    const page = pageMatch ? Number(pageMatch[1]) : 1;
-    this.onPageChange(page);
+  decreaseQty(index: number): void {
+    if (this.products[index].quantity > 1) {
+      this.products[index].quantity -= 1;
+    }
+  }
+
+  addToCart(product: Product): void {
+    console.log('Add to cart:', {
+      id: product.id,
+      quantity: product.quantity
+    });
+    // Integrate with your cartService here
+  }
+
+  viewProduct(productId: number): void {
+    // Navigate without nested [routerLink] issues
+    window.location.href = `/product/${productId}`;
+  }
+  loadMore(event: any): void {
+    this.loadProducts();
+    setTimeout(() => {
+      event.target.complete();
+    }, 500);
+  }
+
+  trackById(index: number, item: Product): number {
+    return item.id;
   }
 
   ngOnDestroy(): void {

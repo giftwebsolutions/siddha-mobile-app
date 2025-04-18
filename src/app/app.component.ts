@@ -12,12 +12,13 @@ register();
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Inbox', url: '/folder/inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/spam', icon: 'warning' },
+    { title: 'All Home', url: '/home', icon: 'home' },
+    { title: 'All Categories', url: '/categories', icon: 'albums' },
+    { title: 'Cart', url: '/cart', icon: 'cart' },
+    { title: 'Checkout', url: '/checkout', icon: 'clipboard' },
+    { title: 'Orders', url: '/orders', icon: 'file-tray-stacked' },
+    { title: 'WishList', url: '/folder/trash', icon: 'heart' },
+    { title: 'Offers', url: '/folder/spam', icon: 'diamond' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor() {

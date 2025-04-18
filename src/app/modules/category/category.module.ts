@@ -6,6 +6,7 @@ import { SubcategoryComponent } from './subcategory/subcategory.component';
 import { IonicModule } from '@ionic/angular';
 import { LayoutModule } from '../../components/layout/layout.module';
 import { ListComponent } from './list/list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -27,6 +28,8 @@ const routes: Routes = [
     CommonModule,
     IonicModule,
     LayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
 })
