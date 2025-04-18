@@ -1,0 +1,22 @@
+<div class="category-list">
+  <div class="row flex-nowrap category-items">
+    @if (categories && categories.length > 0) {
+      @for (category of categories; track category.id) {
+        @if(category.id !== 1) {
+        <div class="col col-3">
+          <div class="category-item text-center">
+            @if (category.logo?.small_image_url) {
+            <img [src]="category.logo.small_image_url" alt="{{ category.name }}" class="img-fluid mb-2" />
+            }
+            <div class="category-name">{{ category.name }}</div>
+          </div>
+        </div>
+        }
+      }
+    } @else {
+    <div class="col">
+      <div class="text-muted">No categories found.</div>
+    </div>
+    }
+  </div>
+</div>

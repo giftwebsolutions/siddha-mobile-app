@@ -1,0 +1,47 @@
+<div class="bg-primary pt-4">
+  <h5 class="mb-2 text-white text-center font-weight-bold">{{ data.title || 'Best of Everyday essentials' }}</h5>
+  <div [routerLink]="['/categories']" class="text-center text-white-50 h6 mb-3">View All</div>
+
+  <ion-grid>
+    @if (products.length > 0) {
+    @for (row of getChunkedProducts(products, 2); track $index) {
+    <ion-row>
+      @for (product of row; track product.id) {
+      <ion-col>
+        <div [routerLink]="['/product', product.id]" class="p-2 shop-homepage-item bg-white">
+          <div class="shop-cart-left">
+            <img alt="img" class="not-found-img" [src]="product.base_image?.small_image_url" />
+          </div>
+          <div class="shop-cart-right">
+            <div class="mb-2">{{ product.name }}</div>
+            <!-- <h6 class="font-weight-bold text-dark mb-2 price">
+              <span [innerHTML]="product.price_html"></span>
+            </h6> -->
+            <div class="small text-gray-500 d-flex align-items-center justify-content-between">
+              <small class="text-secondary">{{ product.weight || 'Qty' }}</small>
+              <div class="input-group shop-cart-value">
+                <span class="input-group-btn">
+                  <button disabled class="btn btn-sm" type="button">-</button>
+                </span>
+                <input type="text" max="10" min="1" value="1"
+                  class="form-control border-form-control form-control-sm input-number" />
+                <span class="input-group-btn">
+                  <button class="btn btn-sm" type="button">+</button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+      }
+    </ion-row>
+    }
+    } @else {
+    <ion-row>
+      <ion-col>
+        <div class="text-white text-center py-3">No products available</div>
+      </ion-col>
+    </ion-row>
+    }
+  </ion-grid>
+</div>

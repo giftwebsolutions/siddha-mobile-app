@@ -41,6 +41,13 @@ export class ProductService {
     );
   }
 
+  getProductsByFilters(filters: Record<string, any>): Observable<Product[]> {
+    return this.http.get<{ data: Product[] }>(`${this.api}/products`, { params: filters }).pipe(
+      map(res => res.data),
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     const errorMsg =
       error.error?.message ||

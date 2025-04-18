@@ -1,0 +1,46 @@
+<div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h5 class="mb-3 d-flex align-items-center">
+          {{ data.title || 'Best Selling' }}
+          <ion-button size="small" [routerLink]="['/categories']" class="ios button button-small ml-auto">
+            View All
+          </ion-button>
+        </h5>
+
+        @if (products.length > 0) {
+        @for (product of products; track product.id) {
+        <div [routerLink]="['/product', product.id]" class="d-flex p-3 shop-cart-item bg-white mb-2">
+          <div class="shop-cart-left">
+            <img alt="img" class="not-found-img" [src]="product.base_image?.small_image_url" />
+          </div>
+          <div class="shop-cart-right">
+            <h6 class="font-weight-bold text-dark mb-2 price">
+              <span [innerHTML]="product.price_html"></span>
+              <ion-badge color="success">5% OFF</ion-badge>
+            </h6>
+            <div class="mb-2">{{ product.name }}</div>
+            <div class="small text-gray-500 d-flex align-items-center justify-content-between">
+              <small class="text-secondary">{{ product.weight || 'Qty' }}</small>
+              <div class="input-group shop-cart-value">
+                <span class="input-group-btn">
+                  <button disabled="disabled" class="btn btn-sm" type="button">-</button>
+                </span>
+                <input type="text" max="10" min="1" value="1"
+                  class="form-control border-form-control form-control-sm input-number" />
+                <span class="input-group-btn">
+                  <button class="btn btn-sm" type="button">+</button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+        } @else {
+        <div class="text-muted text-center mb-3">No best sellers found.</div>
+        }
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

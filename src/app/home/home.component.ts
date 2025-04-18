@@ -1,43 +1,42 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import Swiper from 'swiper';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
+import { HomeService } from './home.service';
+import { PaginatedResponse } from '../core/models/response';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
-    standalone: false
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
+  standalone: false
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
-  @ViewChild('swiper')
-  swiperRef: ElementRef | undefined;
-  swiper?: Swiper;
 
-  images = [
-    'https://images.unsplash.com/photo-1580927752452-89d86da3fa0a',
-    'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
-    'https://images.unsplash.com/photo-1461749280684-dccba630e2f6',
-    'https://images.unsplash.com/photo-1488229297570-58520851e868',
-  ];
 
-  constructor() { }
+  private destroy$ = new Subject<void>();
+  public data: any = [];
 
-  ngOnInit() { }
 
-  swiperSlideChanged(e: any) {
-    console.log('changed: ', e);
+  constructor(
+    private homeService: HomeService
+  ) { }
+
+  ngOnInit(): void {
+    this.homeService.getHomePage()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (data: []) => {
+          this.data = data;
+        },
+        error: (err) => {
+          console.error('Home fetch error:', err.message || err);
+        }
+      });
   }
 
-  swiperReady() {
-    this.swiper = this.swiperRef?.nativeElement.swiper;
-  }
-
-  goNext() {
-    this.swiper?.slideNext();
-  }
-
-  goPrev() {
-    this.swiper?.slidePrev();
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }

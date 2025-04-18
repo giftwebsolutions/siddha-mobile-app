@@ -1,5 +1,7 @@
 {
   "name": "Siddha Medicals",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

@@ -30,7 +30,8 @@ export interface Product {
     reviews?: {
         total: number;
     };
-    quantity: number
+    quantity: number,
+    weight?: string;
 }
 
 export interface ProductImage {

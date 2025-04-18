@@ -1,0 +1,14 @@
+.category-items {
+    overflow-x: auto;
+    white-space: nowrap;
+    /* Ensures the items stay in a single line */
+}
+
+.category-item {
+    display: inline-block;
+    /* Display the items in a row */
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    /* Align the content (image) in the center */
+}

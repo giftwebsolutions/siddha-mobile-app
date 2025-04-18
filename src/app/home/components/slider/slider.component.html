@@ -1,0 +1,8 @@
+<swiper-container #swiper (afterinit)="swiperReady()" (slidechange)="swiperSlideChanged($event)" [loop]="true"
+  [pagination]="true">
+  @for (img of data.images; track $index) {
+  <swiper-slide>
+    <img [src]="getImageUrl(img.image)" alt="{{ img.title }}" />
+  </swiper-slide>
+  }
+</swiper-container>
