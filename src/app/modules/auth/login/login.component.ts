@@ -3,18 +3,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
+  templateUrl: './login.Component.html',
   styleUrls: ['./login.component.scss'],
   standalone:false,
 })
-export class LoginComponent {
+export class LoginPage {
   loginForm: FormGroup;
   showPassword: boolean = false;
 
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', Validators.required]
     });
   }
 
@@ -23,8 +23,13 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    if (this.loginForm.valid) {
-      console.log('Form Submitted', this.loginForm.value);
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
     }
+
+    // Handle login logic here
+    const { email, password } = this.loginForm.value;
+    console.log('Logging in with:', email, password);
   }
 }
