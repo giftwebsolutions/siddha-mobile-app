@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
   standalone:false,
 })
-export class LoginPage {
+export class LoginComponent {
   loginForm: FormGroup;
   showPassword: boolean = false;
 
