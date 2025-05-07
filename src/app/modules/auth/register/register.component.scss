@@ -1,43 +1,103 @@
-body {
-    font-family: Arial, sans-serif;
+ion-content {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f8f8f8;
-}
-.container {
-    background: white;
+    background-color: #f2f2f2;
+  }
+  
+  .container {
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
-}
-h2 {
-    text-align: center;
-}
-.form-group {
-    margin-bottom: 15px;
-}
-label {
-    font-weight: bold;
-}
-input {
+    max-width: 500px;
     width: 100%;
-    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  h2 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    color: #666;
+    margin-bottom: 40px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  label {
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px;
     margin-top: 5px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-}
-.btn {
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  button {
     width: 100%;
-    background-color: #28a745;
+    padding: 14px;
+    background-color: #00113c;
     color: white;
-    padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
+    font-size: 18px;
     cursor: pointer;
-}
-.btn:hover {
-    background-color: #218838;
-}
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #00113c;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .error.ng-touched.ng-invalid {
+    display: block;
+  }
+
+  .sign-in-link {
+    text-align: center;
+    margin-top: 20px;
+    
+    
+  
+    a {
+      text-decoration: none;
+      font-weight: bold;
+    }
+  
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  
