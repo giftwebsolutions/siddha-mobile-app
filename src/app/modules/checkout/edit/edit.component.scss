@@ -1,0 +1,105 @@
+.container {
+  padding: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+p {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #666;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: #3880ff;
+      outline: none;
+    }
+  }
+
+  .error {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+
+  label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+    }
+  }
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #3880ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover:not([disabled]) {
+    background-color: #296bdb;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.sign-in-link {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 14px;
+
+  a {
+    color: #3880ff;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

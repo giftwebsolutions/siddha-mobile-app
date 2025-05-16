@@ -7,11 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { LayoutModule } from '../../components/layout/layout.module';
 import { OrderlistComponent } from './orderlist/orderlist.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
-
+import { FormsModule } from '@angular/forms';
 const routes: Routes = [
    
     {
-      path: '',
+      path: 'myprofile',
       component: MyprofileComponent
     },
     {
@@ -41,6 +41,7 @@ const routes: Routes = [
     CommonModule,
     IonicModule,
     LayoutModule,
+    FormsModule,
     RouterModule.forChild(routes)
   ],
 })

@@ -1,0 +1,126 @@
+<ion-content>
+  <div class="container">
+    <h2>Edit Profile</h2>
+    <p>Update your profile information below.</p>
+
+    <form #editForm="ngForm" (ngSubmit)="updateProfile(editForm)">
+      
+      <!-- Company Name -->
+      <div class="form-group">
+        <label for="companyName">Company Name *</label>
+        <input type="text" id="companyName" name="companyName" placeholder="Enter Company Name"
+               [(ngModel)]="profile.companyName" required #companyName="ngModel">
+        @if (companyName.invalid && (companyName.dirty || companyName.touched)) {
+          <div class="error">Company Name is required.</div>
+        }
+      </div>
+
+      <!-- First Name -->
+      <div class="form-group">
+        <label for="firstName">First Name *</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Enter First Name"
+               [(ngModel)]="profile.firstName" required #firstName="ngModel">
+        @if (firstName.invalid && (firstName.dirty || firstName.touched)) {
+          <div class="error">First Name is required.</div>
+        }
+      </div>
+
+      <!-- Last Name -->
+      <div class="form-group">
+        <label for="lastName">Last Name *</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Enter Last Name"
+               [(ngModel)]="profile.lastName" required #lastName="ngModel">
+        @if (lastName.invalid && (lastName.dirty || lastName.touched)) {
+          <div class="error">Last Name is required.</div>
+        }
+      </div>
+
+      <!-- Email (read-only) -->
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email"  placeholder="email@example.com" [value]="profile.email" disabled>
+      </div>
+
+      <!-- GST No -->
+      <div class="form-group">
+        <label for="gstNo">GST No</label>
+        <input type="text" id="gstNo" name="gstNo" placeholder="Enter GST Number"
+               [(ngModel)]="profile.gstNo">
+      </div>
+
+      <!-- Street Address -->
+      <div class="form-group">
+        <label for="streetAddress">Street Address *</label>
+        <input type="text" id="streetAddress" name="streetAddress" placeholder="Enter Street Address"
+               [(ngModel)]="profile.streetAddress" required #streetAddress="ngModel">
+        @if (streetAddress.invalid && (streetAddress.dirty || streetAddress.touched)) {
+          <div class="error">Street Address is required.</div>
+        }
+      </div>
+
+      <!-- Country -->
+      <div class="form-group">
+        <label for="country">Country *</label>
+        <input type="text" id="country" name="country" placeholder="Enter Country"
+               [(ngModel)]="profile.country" required #country="ngModel">
+        @if (country.invalid && (country.dirty || country.touched)) {
+          <div class="error">Country is required.</div>
+        }
+      </div>
+
+      <!-- State -->
+      <div class="form-group">
+        <label for="state">State *</label>
+        <input type="text" id="state" name="state" placeholder="Enter State"
+               [(ngModel)]="profile.state" required #state="ngModel">
+        @if (state.invalid && (state.dirty || state.touched)) {
+          <div class="error">State is required.</div>
+        }
+      </div>
+
+      <!-- City -->
+      <div class="form-group">
+        <label for="city">City *</label>
+        <input type="text" id="city" name="city" placeholder="Enter City"
+               [(ngModel)]="profile.city" required #city="ngModel">
+        @if (city.invalid && (city.dirty || city.touched)) {
+          <div class="error">City is required.</div>
+        }
+      </div>
+
+      <!-- Post Code -->
+      <div class="form-group">
+        <label for="postCode">Post Code *</label>
+        <input type="number" id="postCode" name="postCode" placeholder="Enter 6-digit Post Code"
+               [(ngModel)]="profile.postCode" required minlength="6" maxlength="6" #postCode="ngModel">
+        @if (postCode.invalid && (postCode.dirty || postCode.touched)) {
+          <div class="error">Post Code is required and must be 6 digits.</div>
+        }
+      </div>
+
+      <!-- Phone Number -->
+      <div class="form-group">
+        <label for="phone">Phone Number *</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number"
+               [(ngModel)]="profile.phone" required #phone="ngModel">
+        @if (phone.invalid && (phone.dirty || phone.touched)) {
+          <div class="error">Phone Number is required.</div>
+        }
+      </div>
+
+      <!-- Default Address -->
+      <div class="form-group checkbox-group">
+        <label>
+          <input type="checkbox" name="isDefault" [(ngModel)]="profile.isDefault">
+          Default Address
+        </label>
+      </div>
+
+      <button type="submit" class="btn-primary" [disabled]="editForm.invalid">Update Profile</button>
+    </form>
+
+    <p class="sign-in-link">
+      Back to <a href="/account/myprofile">Profile</a>
+    </p>
+  </div>
+</ion-content>
