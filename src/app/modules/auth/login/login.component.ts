@@ -11,17 +11,16 @@ import { ToastrService } from 'ngx-toastr';
   standalone: false,
 })
 export class LoginComponent implements OnInit, OnDestroy {
-
   loginForm!: FormGroup;
   submitted = false;
-  showPassword: boolean = false;
+  showPassword = false;
   subscriptions: Subscription = new Subscription();
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private toastr: ToastrService,
-  ) {}
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -33,7 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.minLength(8),
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/)
-      ]],
+      ]]
     });
   }
 
@@ -47,7 +46,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.submitted = true;
-
     if (this.loginForm.invalid) {
       this.toastr.error('Please correct the errors in the form.');
       this.loginForm.markAllAsTouched();
@@ -56,52 +54,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     const { email, password } = this.loginForm.value;
     console.log('Logging in with:', email, password);
-
-    // Simulate successful login
     this.toastr.success('Login successful!');
-    // Example: this.router.navigate(['/dashboard']);
+    // this.router.navigate(['/dashboard']);
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 }
-
-
-// import { Component } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-// @Component({
-//   selector: 'app-login',
-//   templateUrl: './login.Component.html',
-//   styleUrls: ['./login.component.scss'],
-//   standalone:false,
-// })
-// export class LoginComponent {
-//   loginForm: FormGroup;
-//   showPassword: boolean = false;
-
-//   constructor(private fb: FormBuilder) {
-//     this.loginForm = this.fb.group({
-//       email: ['', [Validators.required, Validators.email]],
-//       password: ['', Validators.required]
-//     });
-//   }
-
-//   togglePassword() {
-//     this.showPassword = !this.showPassword;
-//   }
-
-//   onSubmit() {
-//     if (this.loginForm.invalid) {
-//       this.loginForm.markAllAsTouched();
-//       return;
-//     }
-
-//     // Handle login logic here
-//     const { email, password } = this.loginForm.value;
-//     console.log('Logging in with:', email, password);
-//   }
-// }
-
-

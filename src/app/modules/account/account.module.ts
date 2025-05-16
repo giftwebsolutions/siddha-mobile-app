@@ -8,34 +8,38 @@ import { LayoutModule } from '../../components/layout/layout.module';
 import { OrderlistComponent } from './orderlist/orderlist.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { FormsModule } from '@angular/forms';
+import { AccountComponent } from './account.component';
 const routes: Routes = [
-   
-    {
-      path: 'myprofile',
-      component: MyprofileComponent
-    },
-    {
-      path: 'myaddress',
-      component: MyaddressComponent
-    },
-    {
-      path: 'orderlist',
-      component: OrderlistComponent
-    },
-    {
-      path: 'wishlist',
-      component: WishlistComponent
-    },
+  {
+    path: '',
+    component: AccountComponent
+  },
+  {
+    path: 'myprofile',
+    component: MyprofileComponent
+  },
+  {
+    path: 'myaddress',
+    component: MyaddressComponent
+  },
+  {
+    path: 'orderlist',
+    component: OrderlistComponent
+  },
+  {
+    path: 'wishlist',
+    component: WishlistComponent
+  },
 
 
 ];
 @NgModule({
   declarations: [
-     MyprofileComponent,
-     MyaddressComponent,
-     OrderlistComponent,
-     WishlistComponent
-
+    MyprofileComponent,
+    MyaddressComponent,
+    OrderlistComponent,
+    WishlistComponent,
+    AccountComponent,
   ],
   imports: [
     CommonModule,
