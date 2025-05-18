@@ -1,16 +1,21 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AccountService } from './services/account.service';
+
 @Component({
-  selector: 'app-my-account',
+  selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss'],
-  'standalone': false,
+  standalone: false
 })
 export class AccountComponent implements OnInit {
+  user: any = {};
 
+  constructor(private accountService: AccountService) { }
 
-  constructor() { }
-
-  ngOnInit() { }
-
-
+  ngOnInit(): void {
+    this.accountService.getProfile().subscribe({
+      next: res => this.user = res.data,
+      error: err => console.error('Failed to load profile', err)
+    });
+  }
 }

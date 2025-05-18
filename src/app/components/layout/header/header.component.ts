@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -7,6 +8,9 @@ import { Router } from '@angular/router';
   standalone: false
 })
 export class HeaderComponent implements OnInit {
+  @Input() title: string = 'Siddha Medicals';
+  @Input() showBackButton: boolean = false;
+  @Input() showSearch: boolean = true;
 
   constructor(private router: Router) { }
 
@@ -14,7 +18,6 @@ export class HeaderComponent implements OnInit {
 
   get isHomePage(): boolean {
     const url = this.router.url;
-    return url === '/' || url === '/home'; // adapt as per your home route
+    return url === '/' || url === '/home';
   }
-
 }

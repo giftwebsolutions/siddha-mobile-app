@@ -15,120 +15,99 @@
 <ion-content class="ion-padding my-profile-page" color="light">
 
   <div class="container">
-  
-    <form #editForm="ngForm" (ngSubmit)="updateProfile(editForm)">
 
-      <!-- Company Name -->
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="companyName">Company Name *</label>
-        <input type="text" id="companyName" name="companyName" placeholder="Enter Company Name"
-          [(ngModel)]="profile.companyName" required #companyName="ngModel">
-        <div class="error" *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)">
-          Company Name is required.
-        </div>
+        <label>First Name *</label>
+        <input type="text" formControlName="first_name" (blur)="profileForm.get('first_name')?.markAsTouched()" />
+        @if (hasError('first_name')) {
+        <div class="error">First name is required.</div>
+        }
       </div>
 
-      <!-- First Name -->
       <div class="form-group">
-        <label for="firstName">First Name *</label>
-        <input type="text" id="firstName" name="firstName" placeholder="Enter First Name"
-          [(ngModel)]="profile.firstName" required #firstName="ngModel">
-        <div class="error" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
-          First Name is required.
-        </div>
+        <label>Last Name *</label>
+        <input type="text" formControlName="last_name" (blur)="profileForm.get('last_name')?.markAsTouched()" />
+        @if (hasError('last_name')) {
+        <div class="error">Last name is required.</div>
+        }
       </div>
 
-      <!-- Last Name -->
       <div class="form-group">
-        <label for="lastName">Last Name *</label>
-        <input type="text" id="lastName" name="lastName" placeholder="Enter Last Name" [(ngModel)]="profile.lastName"
-          required #lastName="ngModel">
-        <div class="error" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
-          Last Name is required.
-        </div>
+        <label>Email *</label>
+        <input type="email" formControlName="email"  (blur)="profileForm.get('email')?.markAsTouched()" />
+        @if (profileForm.get('email')?.errors?.['email'] && profileForm.get('email')?.touched) {
+        <div class="error">Please enter a valid email address.</div>
+        }
       </div>
 
-      <!-- Email (read-only) -->
       <div class="form-group">
-        <label for="email">Email *</label>
-        <input type="email" id="email" name="email" placeholder="email@example.com" [value]="profile.email" disabled>
+        <label>Phone *</label>
+        <input type="text" formControlName="phone" (blur)="profileForm.get('phone')?.markAsTouched()" />
+        @if (hasError('phone')) {
+        <div class="error">Phone number is required.</div>
+        }
       </div>
 
-      <!-- GST No -->
       <div class="form-group">
-        <label for="gstNo">GST No</label>
-        <input type="text" id="gstNo" name="gstNo" placeholder="Enter GST Number" [(ngModel)]="profile.gstNo">
+        <label>Gender *</label>
+        <select formControlName="gender" (blur)="profileForm.get('gender')?.markAsTouched()">
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        @if (hasError('gender')) {
+        <div class="error">Gender is required.</div>
+        }
       </div>
 
-      <!-- Street Address -->
       <div class="form-group">
-        <label for="streetAddress">Street Address *</label>
-        <input type="text" id="streetAddress" name="streetAddress" placeholder="Enter Street Address"
-          [(ngModel)]="profile.streetAddress" required #streetAddress="ngModel">
-        <div class="error" *ngIf="streetAddress.invalid && (streetAddress.dirty || streetAddress.touched)">
-          Street Address is required.
-        </div>
+        <label>Date of Birth *</label>
+        <input type="date" formControlName="date_of_birth" (blur)="profileForm.get('date_of_birth')?.markAsTouched()" />
+        @if (hasError('date_of_birth')) {
+        <div class="error">Date of birth is required.</div>
+        }
       </div>
 
-      <!-- Country -->
       <div class="form-group">
-        <label for="country">Country *</label>
-        <input type="text" id="country" name="country" placeholder="Enter Country" [(ngModel)]="profile.country"
-          required #country="ngModel">
-        <div class="error" *ngIf="country.invalid && (country.dirty || country.touched)">
-          Country is required.
-        </div>
+        <label>Current Password</label>
+        <input type="password" formControlName="current_password"
+          (blur)="profileForm.get('current_password')?.markAsTouched()" />
       </div>
 
-      <!-- State -->
       <div class="form-group">
-        <label for="state">State *</label>
-        <input type="text" id="state" name="state" placeholder="Enter State" [(ngModel)]="profile.state" required
-          #state="ngModel">
-        <div class="error" *ngIf="state.invalid && (state.dirty || state.touched)">
-          State is required.
-        </div>
+        <label>New Password</label>
+        <input type="password" formControlName="new_password"
+          (blur)="profileForm.get('new_password')?.markAsTouched()" />
+        @if (profileForm.get('new_password')?.errors?.['minlength'] && profileForm.get('new_password')?.touched) {
+        <div class="error">Password must be at least 6 characters long.</div>
+        }
       </div>
 
-      <!-- City -->
       <div class="form-group">
-        <label for="city">City *</label>
-        <input type="text" id="city" name="city" placeholder="Enter City" [(ngModel)]="profile.city" required
-          #city="ngModel">
-        <div class="error" *ngIf="city.invalid && (city.dirty || city.touched)">
-          City is required.
-        </div>
+        <label>Confirm Password</label>
+        <input type="password" formControlName="new_password_confirmation"
+          (blur)="profileForm.get('new_password_confirmation')?.markAsTouched()" />
+        @if (profileForm.get('new_password_confirmation')?.touched &&
+        profileForm.get('new_password_confirmation')?.value
+        !== profileForm.get('new_password')?.value) {
+        <div class="error">Passwords do not match.</div>
+        }
       </div>
 
-      <!-- Post Code -->
       <div class="form-group">
-        <label for="postCode">Post Code *</label>
-        <input type="number" id="postCode" name="postCode" placeholder="Enter 6-digit Post Code"
-          [(ngModel)]="profile.postCode" required minlength="6" maxlength="6" #postCode="ngModel">
-        <div class="error" *ngIf="postCode.invalid && (postCode.dirty || postCode.touched)">
-          Post Code is required and must be 6 digits.
-        </div>
+        <label>Profile Image</label>
+        <input type="file" (change)="onFileChange($event)" />
       </div>
 
-      <!-- Phone Number -->
-      <div class="form-group">
-        <label for="phone">Phone Number *</label>
-        <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" [(ngModel)]="profile.phone" required
-          #phone="ngModel">
-        <div class="error" *ngIf="phone.invalid && (phone.dirty || phone.touched)">
-          Phone Number is required.
-        </div>
-      </div>
-
-      <!-- Default Address -->
       <div class="form-group checkbox-group">
         <label>
-          <input type="checkbox" name="isDefault" [(ngModel)]="profile.isDefault">
-          Default Address
+          <input type="checkbox" formControlName="subscribed_to_news_letter" />
+          Subscribe to Newsletter
         </label>
       </div>
 
-      <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Delete Profile</button>
+      <button type="submit" [disabled]="profileForm.invalid">Update Profile</button>
     </form>
   </div>
 

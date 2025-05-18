@@ -7,32 +7,38 @@ import { IonicModule } from '@ionic/angular';
 import { LayoutModule } from '../../components/layout/layout.module';
 import { OrderlistComponent } from './orderlist/orderlist.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountComponent } from './account.component';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
+
 const routes: Routes = [
   {
     path: '',
-    component: AccountComponent
+    component: AccountComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'myprofile',
-    component: MyprofileComponent
+    component: MyprofileComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'myaddress',
-    component: MyaddressComponent
+    component: MyaddressComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'orderlist',
-    component: OrderlistComponent
+    component: OrderlistComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'wishlist',
-    component: WishlistComponent
+    component: WishlistComponent,
+    canActivate: [AuthGuard],
   },
-
-
 ];
+
 @NgModule({
   declarations: [
     MyprofileComponent,
@@ -46,6 +52,7 @@ const routes: Routes = [
     IonicModule,
     LayoutModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
 })

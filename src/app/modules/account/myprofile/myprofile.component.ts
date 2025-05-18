@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AccountService } from '../services/account.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-myprofile',
@@ -6,37 +9,79 @@ import { Component } from '@angular/core';
   styleUrls: ['./myprofile.component.scss'],
   standalone: false,
 })
-export class MyprofileComponent {
+export class MyprofileComponent implements OnInit {
+  profileForm!: FormGroup;
 
-  profile = {
-    companyName: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    gstNo: '',
-    streetAddress: '',
-    country: '',
-    state: '',
-    city: '',
-    postCode: '',
-    phone: '',
-    isDefault: false,
-    dob: '',
-    gender: ''
-  };
+  constructor(
+    private fb: FormBuilder,
+    private accountService: AccountService,
+    private toastr: ToastrService
+  ) { }
 
-  constructor() {
-    // You can initialize your profile here or fetch it from API
+  ngOnInit(): void {
+    this.profileForm = this.fb.group({
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      email: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
+      gender: ['', Validators.required],
+      date_of_birth: ['', Validators.required],
+      current_password: [''],
+      new_password: [''],
+      new_password_confirmation: [''],
+      subscribed_to_news_letter: [false],
+      image: [null],
+    });
+
+    this.loadProfile();
   }
 
-  // Define this method to handle form submission
-  updateProfile(form: any) {
-    if (form.valid) {
-      console.log('Form Data:', this.profile);
-      // TODO: Add your profile update logic here, e.g. call a service to save data
-      alert('Profile updated successfully!');
-    } else {
-      alert('Please fill all required fields correctly.');
+  loadProfile(): void {
+    this.accountService.getProfile().subscribe({
+      next: res => {
+        const data = res.data;
+        this.profileForm.patchValue({
+          first_name: data.first_name,
+          last_name: data.last_name,
+          email: data.email,
+          phone: data.phone,
+          gender: data.gender,
+          date_of_birth: data.date_of_birth,
+          subscribed_to_news_letter: false,
+        });
+      },
+      error: err => {
+        this.toastr.error(err?.message || 'Failed to load profile');
+      }
+    });
+  }
+
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.profileForm.patchValue({ image: file });
     }
+  }
+
+  onSubmit(): void {
+    if (this.profileForm.invalid) {
+      this.profileForm.markAllAsTouched();
+      this.toastr.error('Please fix the form errors.');
+      return;
+    }
+
+    const formData = this.profileForm.getRawValue();
+    this.accountService.updateProfile({
+      _method: 'PUT',
+      ...formData
+    }).subscribe({
+      next: () => this.toastr.success('Profile updated successfully!'),
+      error: err => this.toastr.error(err?.message || 'Profile update failed')
+    });
+  }
+
+  hasError(controlName: string): boolean {
+    const ctrl = this.profileForm.get(controlName);
+    return !!(ctrl && ctrl.invalid && ctrl.touched);
   }
 }

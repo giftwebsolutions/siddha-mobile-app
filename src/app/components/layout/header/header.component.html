@@ -1,18 +1,29 @@
 <ion-toolbar>
   <ion-buttons slot="start">
-    @if (isHomePage) {
-    <ion-menu-button color="light"></ion-menu-button>
-    } @else {
+    @if (showBackButton && !isHomePage) {
     <ion-back-button defaultHref="/home" color="light"></ion-back-button>
+    } @else {
+    <ion-menu-button color="light"></ion-menu-button>
     }
   </ion-buttons>
-  <ion-title color="light">Siddha Medicals</ion-title>
+
+  <ion-title color="light">{{ title }}</ion-title>
+
   <ion-buttons slot="end">
-    <ion-icon name="cart-outline" color="light"></ion-icon>
-    <ion-icon name="heart-outline" color="light"></ion-icon>
-    <ion-icon name="person-circle" color="light"></ion-icon>
+    <ion-button [routerLink]="['/cart']" fill="clear">
+      <ion-icon name="cart-outline" color="light"></ion-icon>
+    </ion-button>
+    <ion-button [routerLink]="['/wishlist']" fill="clear">
+      <ion-icon name="heart-outline" color="light"></ion-icon>
+    </ion-button>
+    <ion-button [routerLink]="['/account']" fill="clear">
+      <ion-icon name="person-circle" color="light"></ion-icon>
+    </ion-button>
   </ion-buttons>
 </ion-toolbar>
+
+@if (showSearch) {
 <ion-toolbar class="ion-no-padding">
-  <ion-searchbar color="light" placeholder="Light" ></ion-searchbar>
+  <ion-searchbar color="light" placeholder="Search products..."></ion-searchbar>
 </ion-toolbar>
+}

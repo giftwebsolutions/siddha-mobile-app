@@ -14,17 +14,21 @@ import { AppInitService } from './core/services/appinit.services';
 import { AppInterceptor } from './core/interceptors/app.interceptor';
 import { HomeModule } from './home/home.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule, 
+    BrowserAnimationsModule,
     IonicModule.forRoot(), 
     AppRoutingModule, 
     LayoutModule,
     ReactiveFormsModule,
     HttpClientModule, // Add HttpClientModule here
     HomeModule,
-    AuthModule
+    AuthModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     AuthenticationService,
