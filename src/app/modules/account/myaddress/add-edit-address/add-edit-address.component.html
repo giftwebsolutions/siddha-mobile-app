@@ -1,0 +1,78 @@
+<ion-header class="osahan-nav">
+  <app-header [title]="isEditMode ? 'Edit Address' : 'Add Address'" [showBackButton]="true"
+    [showSearch]="false"></app-header>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-input label="First Name" formControlName="first_name"></ion-input>
+      </ion-item>
+      @if (hasError('first_name')) {
+      <div class="error">First name is required.</div>
+      }
+
+      <ion-item>
+        <ion-input label="Last Name" formControlName="last_name"></ion-input>
+      </ion-item>
+      @if (hasError('last_name')) {
+      <div class="error">Last name is required.</div>
+      }
+
+      <ion-item>
+        <ion-input label="Company Name" formControlName="company_name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Address" formControlName="address"></ion-input>
+      </ion-item>
+      @if (hasError('address')) {
+      <div class="error">Address is required.</div>
+      }
+
+      <ion-item>
+        <ion-input label="City" formControlName="city"></ion-input>
+      </ion-item>
+      @if (hasError('city')) {
+      <div class="error">City is required.</div>
+      }
+
+      <ion-item>
+        <ion-input label="State" formControlName="state"></ion-input>
+      </ion-item>
+      @if (hasError('state')) {
+      <div class="error">State is required.</div>
+      }
+
+      <ion-item>
+        <ion-input label="Postcode" formControlName="postcode"></ion-input>
+      </ion-item>
+      @if (hasError('postcode')) {
+      <div class="error">Postcode is required.</div>
+      }
+
+      <ion-item>
+        <ion-input label="Phone" formControlName="phone"></ion-input>
+      </ion-item>
+      @if (hasError('phone')) {
+      <div class="error">Phone is required.</div>
+      }
+
+      <ion-item>
+        <ion-input label="Email" formControlName="email"></ion-input>
+      </ion-item>
+      @if (hasError('email')) {
+      <div class="error">A valid email is required.</div>
+      }
+
+      <ion-item>
+        <ion-label>Default</ion-label>
+        <ion-toggle formControlName="is_default"></ion-toggle>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="full" type="submit" [disabled]="addressForm.invalid">
+      {{ isEditMode ? 'Update' : 'Save' }} Address
+    </ion-button>
+  </form>
+</ion-content>

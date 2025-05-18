@@ -10,6 +10,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountComponent } from './account.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
+import { AddEditAddressComponent } from './myaddress/add-edit-address/add-edit-address.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,14 @@ const routes: Routes = [
     path: 'myaddress',
     component: MyaddressComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'add-address',
+    component: AddEditAddressComponent,
+  },
+  {
+    path: 'edit-address/:id',
+    component: AddEditAddressComponent,
   },
   {
     path: 'orderlist',
@@ -46,6 +55,7 @@ const routes: Routes = [
     OrderlistComponent,
     WishlistComponent,
     AccountComponent,
+    AddEditAddressComponent,
   ],
   imports: [
     CommonModule,
