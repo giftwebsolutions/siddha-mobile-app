@@ -18,6 +18,7 @@ export class ListComponent implements OnInit, OnDestroy {
   public hasMore = true;
   private destroy$ = new Subject<void>();
   public categoryId: string | null = null;
+  public categoryName: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +26,7 @@ export class ListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.categoryId = this.route.snapshot.paramMap.get('id');
+    this.categoryName = this.route.snapshot.paramMap.get('slug');
     this.loadProducts();
   }
 

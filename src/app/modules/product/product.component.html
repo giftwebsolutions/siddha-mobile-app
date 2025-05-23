@@ -1,14 +1,14 @@
 <ion-header [translucent]="true" class="osahan-nav">
-  <app-header></app-header>
+  <app-header [title]="product?.name || 'Product Details'" [showBackButton]="true"></app-header>
 </ion-header>
 <ion-content class="single-page" color="light">
   @if(images && images.length > 0) {
-    <swiper-container #swiper (afterinit)="swiperReady()" (slidechange)="swiperSlideChanged($event)" [loop]="true"
-      [pagination]="true">
-      @for (img of images; track $index) {
-      <swiper-slide><img [src]="img.medium_image_url" /></swiper-slide>
-      }
-    </swiper-container>
+  <swiper-container #swiper (afterinit)="swiperReady()" (slidechange)="swiperSlideChanged($event)" [loop]="true"
+    [pagination]="true">
+    @for (img of images; track $index) {
+    <swiper-slide><img [src]="img.medium_image_url" /></swiper-slide>
+    }
+  </swiper-container>
   }
   <div class="p-3">
     <div class="mb-2 card p-3 single-page-info">
@@ -18,21 +18,35 @@
           <strong><ion-icon name="checkmark-circle-outline"></ion-icon> Available</strong>
           - {{ product?.quantity }} units
         </small>
-  
-        <h6 class="font-weight-bold text-dark mb-3 mt-2">
-          {{ product?.prices?.final?.formatted_price }}
-          <span class="regular-price text-secondary font-weight-normal">
-            {{ product?.prices?.regular?.formatted_price }}
+
+        <h6 class="font-weight-bold text-dark mb-3 mt-2 d-flex align-items-center gap-2">
+          <!-- Final Price -->
+          {{ product?.prices?.final?.formatted_price || '₹0' }}
+
+          <!-- Regular Price -->
+          <span class="regular-price text-secondary font-weight-normal text-decoration-line-through ms-1">
+            {{ product?.prices?.regular?.formatted_price || '' }}
           </span>
-          <ion-badge color="success">5% OFF</ion-badge>
+
+          <!-- Discount Badge -->
+          @if (+product?.prices?.regular?.price! > +product?.prices?.final?.price!) {
+          <ion-badge color="success">
+            {{
+            (
+            (+product?.prices?.regular?.price! - +product?.prices?.final?.price!) /
+            +product?.prices?.regular?.price! * 100
+            ) | number: '1.0-0'
+            }}% OFF
+          </ion-badge>
+          }
         </h6>
-  
+
         <div class="small text-gray-500 d-flex align-items-center justify-content-between">
           <div class="text-success">
             <ion-icon name="star-outline"></ion-icon>
             {{ product?.ratings?.average || '0.0' }}
           </div>
-  
+
           <div class="input-group shop-cart-value">
             <span class="input-group-btn">
               <button class="btn btn-sm" type="button" [disabled]="quantity <= 1"
@@ -47,30 +61,20 @@
         </div>
       </div>
     </div>
-  
-    <div class="mb-2 card p-3 single-page-info">
-      <div class="short-description">
-        <small class="float-right">Availability:
-          <span class="badge badge-success">{{ product?.is_saleable ? 'In Stock' : 'Out of Stock' }}</span>
-        </small>
-        <h6 class="font-weight-bold mb-3">Quick Overview</h6>
-        <div class="text-secondary" [innerHTML]="product?.description"></div>
-      </div>
-    </div>
-  
-    <div class="card mb-2 single-page-info">
+
+    <div class="card bg-white mb-2 single-page-info">
       <ion-accordion-group>
         <ion-accordion value="description">
-          <ion-item slot="header" color="light">
+          <ion-item slot="header" color="white">
             <ion-label>Description</ion-label>
           </ion-item>
           <div class="ion-padding" slot="content">
             <div [innerHTML]="product?.description"></div>
           </div>
         </ion-accordion>
-  
+
         <ion-accordion value="benefits">
-          <ion-item slot="header" color="light">
+          <ion-item slot="header" color="white">
             <ion-label>Benefits</ion-label>
           </ion-item>
           <div class="ion-padding" slot="content">
@@ -79,9 +83,9 @@
             </ul>
           </div>
         </ion-accordion>
-  
+
         <ion-accordion value="how-to-use">
-          <ion-item slot="header" color="light">
+          <ion-item slot="header" color="white">
             <ion-label>How To Use</ion-label>
           </ion-item>
           <div class="ion-padding" slot="content">
@@ -91,19 +95,19 @@
       </ion-accordion-group>
     </div>
   </div>
-  </ion-content>
-  
-  <ion-footer class="border-0">
-    <div class="d-grid gap-2">
-      <button [routerLink]="['/checkout']"
-        class="btn btn-primary btn-lg btn-block d-flex justify-content-between fix-btn align-items-center" type="button">
-        <span class="text-start d-flex align-items-center gap-1">
-          <ion-icon name="cart-outline"></ion-icon> Add to cart
-        </span>
-        <span class="text-end d-flex align-items-center gap-1">
-          <strong>{{ product?.prices?.final?.formatted_price }}</strong>
-          <ion-icon name="arrow-forward-outline"></ion-icon>
-        </span>
-      </button>
-    </div>
-  </ion-footer>
+</ion-content>
+
+<ion-footer class="border-0">
+  <div class="d-grid gap-2">
+    <button [routerLink]="['/cart']"
+      class="btn btn-primary btn-lg btn-block d-flex justify-content-between fix-btn align-items-center" type="button">
+      <span class="text-start d-flex align-items-center gap-1">
+        <ion-icon name="cart-outline"></ion-icon> Add to cart
+      </span>
+      <span class="text-end d-flex align-items-center gap-1">
+        <strong>{{ product?.prices?.final?.formatted_price }}</strong>
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </span>
+    </button>
+  </div>
+</ion-footer>

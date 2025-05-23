@@ -1,38 +1,31 @@
 <ion-header [translucent]="true" class="osahan-nav">
-  <app-header></app-header>
+  <app-header title="All categories" [showBackButton] = true></app-header>
 </ion-header>
-
 <ion-content class="ion-padding" [fullscreen]="true">
   @if (categories && categories.length > 0) {
-    @for (category of categories; track category.id; let i = $index) {
-      @if(category.id !== 1) {
-      <div [routerLink]="['/categories', category.id]" class="categories-item mb-2 card" routerDirection="forward">
-        <div class="container gold-members p-3">
-          <div class="row media align-items-center">
-            <div class="col-3 mr-3">
-              @if (category.logo?.medium_image_url) {
-              <img [src]="category?.logo?.medium_image_url" [alt]="category.name" class="categories-img" />
-              } @else {
-              <img src="assets/placeholder.png" alt="No Image" class="categories-img" />
-              }
-            </div>
-            <div class="col-9 media-body">
-              <p class="text-success m-0">Up to 50% OFF'</p>
-              <h5 class="mb-2 text-dark font-weight-bold">{{ category.name }}</h5>
-              <p class="mb-0 small text-secondary">
-                {{ 'Shop a wide range of products in this category.' }}
-              </p>
-            </div>
+
+    <div class="row no-gutters g-0">
+      @for (category of categories; track category.id; let i = $index) {
+      @if (category.id !== 1) {
+      <div class="col-6 p-0">
+        <div [routerLink]="['/categories', category.id, category.name]" routerDirection="forward" class="categories-item">
+          <div class="p-3 text-center">
+            @if (category.logo?.medium_image_url) {
+            <img [src]="category.logo?.medium_image_url" class="categories-img mb-2" />
+            } @else {
+            <div class="no-image">No Image</div>
+            }
+            <h6 class="m-0">{{ category.name }}</h6>
           </div>
         </div>
       </div>
       }
-    }
+      }
+      </div>
   } @else {
   <div class="text-center p-4">
     <ion-text color="medium">No categories available.</ion-text>
   </div>
   }
-
 </ion-content>
 <app-footer></app-footer>

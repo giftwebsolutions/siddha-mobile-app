@@ -9,7 +9,7 @@
 
   <ion-title color="light">{{ title }}</ion-title>
 
-  <ion-buttons slot="end">
+  <ion-buttons slot="end" class="no-gap-buttons">
     <ion-button [routerLink]="['/cart']" fill="clear">
       <ion-icon name="cart-outline" color="light"></ion-icon>
     </ion-button>
@@ -19,7 +19,7 @@
     <ion-button [routerLink]="['/account']" fill="clear">
       <ion-icon name="person-circle" color="light"></ion-icon>
     </ion-button>
-  </ion-buttons>
+    </ion-buttons>
 </ion-toolbar>
 
 @if (showSearch) {

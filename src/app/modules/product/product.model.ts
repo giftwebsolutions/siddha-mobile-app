@@ -24,11 +24,11 @@ export interface Product {
     };
     price_html?: string;
     ratings?: {
-        average: string;
-        total: number;
+        average?: string;
+        total?: number;
     };
     reviews?: {
-        total: number;
+        total?: number;
     };
     quantity: number,
     weight?: string;

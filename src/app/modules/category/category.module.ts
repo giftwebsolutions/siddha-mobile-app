@@ -14,7 +14,7 @@ const routes: Routes = [
     component: CategoryComponent
   },
   {
-    path: ':id',
+    path: ':id/:slug',
     component: ListComponent
   }
 ];
