@@ -1,103 +1,100 @@
-ion-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f2f2f2;
-  }
-  
-  .container {
-    padding: 30px;
-    max-width: 500px;
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 8px;
-    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
+.register-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  // box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
   h2 {
+    text-align: center;
+    margin-bottom: 0.5rem;
     color: #333;
-    font-size: 28px;
-    margin-bottom: 20px;
   }
-  
+
   p {
+    text-align: center;
     color: #666;
-    margin-bottom: 40px;
+    margin-bottom: 1.5rem;
   }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
+
   .form-group {
-    margin-bottom: 20px;
-    text-align: left;
+    margin-bottom: 1.25rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      color: #444;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        border-color: #3880ff;
+        outline: none;
+      }
+    }
+
+    .error {
+      margin-top: 0.25rem;
+      color: #e53935;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
   }
-  
-  label {
-    font-weight: bold;
-    color: #444;
-    margin-bottom: 8px;
+
+  .btn-primary {
     display: block;
-  }
-  
-  input {
     width: 100%;
-    padding: 12px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  input:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  button {
-    width: 100%;
-    padding: 14px;
-    background-color: #00113c;
+    padding: 0.75rem 0;
+    background-color: #3880ff;
     color: white;
     border: none;
     border-radius: 4px;
-    font-size: 18px;
+    font-size: 1.1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #00113c;
-  }
-  
-  .error {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-  }
-  
-  .error.ng-touched.ng-invalid {
-    display: block;
+    transition: background-color 0.3s ease;
+
+    &:disabled {
+      background-color: #c0c0c0;
+      cursor: not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: #2f6adf;
+    }
   }
 
   .sign-in-link {
     text-align: center;
-    margin-top: 20px;
-    
-    
-  
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+
     a {
+      color: #3880ff;
       text-decoration: none;
-      font-weight: bold;
-    }
-  
-    a:hover {
-      text-decoration: underline;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
-  
-  
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .register-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+}

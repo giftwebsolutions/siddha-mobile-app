@@ -1,120 +1,76 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-password',
   templateUrl: './password.component.html',
   styleUrls: ['./password.component.scss'],
-  standalone: false,
+   standalone: false,
 })
-export class PasswordComponent implements OnInit, OnDestroy {
-
+export class PasswordComponent {
   passwordForm!: FormGroup;
-  submitted = false;
-  subscriptions: Subscription = new Subscription();
+  showPassword: boolean = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private toastr: ToastrService
-  ) {}
-
-  ngOnInit(): void {
-    this.passwordForm = this.fb.group({
-      password: ['', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{6,}$/)
-      ]],
-      confirmPassword: ['', Validators.required]
-    }, {
-      validators: this.mustMatch('password', 'confirmPassword')
-    });
+  constructor(private fb: FormBuilder) {
+    this.createForm();
   }
 
+  createForm(): void {
+    this.passwordForm = this.fb.group(
+      {
+        newPassword: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/)
+          ]
+        ],
+        confirmPassword: ['', Validators.required]
+      },
+      {
+        validators: this.matchPasswords('newPassword', 'confirmPassword')
+      }
+    );
+  }
+
+  // Custom validator to check if passwords match
+  matchPasswords(passwordKey: string, confirmKey: string) {
+    return (formGroup: AbstractControl): ValidationErrors | null => {
+      const password = formGroup.get(passwordKey)?.value;
+      const confirm = formGroup.get(confirmKey)?.value;
+
+      if (password !== confirm) {
+        formGroup.get(confirmKey)?.setErrors({ mismatch: true });
+        return { mismatch: true };
+      } else {
+        const confirmControl = formGroup.get(confirmKey);
+        if (confirmControl?.hasError('mismatch')) {
+          confirmControl.setErrors(null); // clear mismatch if corrected
+        }
+        return null;
+      }
+    };
+  }
+
+  // Getter for easy access in template
   get f() {
     return this.passwordForm.controls;
   }
 
-  mustMatch(controlName: string, matchingControlName: string) {
-    return (formGroup: FormGroup) => {
-      const control = formGroup.controls[controlName];
-      const matchingControl = formGroup.controls[matchingControlName];
-
-      if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
-        return;
-      }
-
-      if (control.value !== matchingControl.value) {
-        matchingControl.setErrors({ mustMatch: true });
-      } else {
-        matchingControl.setErrors(null);
-      }
-    };
+  togglePassword(): void {
+    this.showPassword = !this.showPassword;
   }
 
   onSubmit(): void {
-    this.submitted = true;
-
     if (this.passwordForm.invalid) {
-      this.toastr.error('Please correct the errors in the form.');
+      this.passwordForm.markAllAsTouched();
       return;
     }
 
-    const data = {
-      password: this.passwordForm.value.password
-    };
+    const newPassword = this.passwordForm.value.newPassword;
+    console.log('Password successfully changed:', newPassword);
 
-    console.log('Password reset submitted:', data);
-    this.toastr.success('Password has been reset successfully.');
-
-    // Optional: redirect
-    // this.router.navigate(['/login']);
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    // Call service to update password or route to login etc.
   }
 }
-
-
-// import { Component, OnInit } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-// @Component({
-//   selector: 'app-password',
-//   templateUrl: './password.component.html',
-//   styleUrls: ['./password.component.scss'],
-//   standalone:false,
-// })
-// export class PasswordComponent implements OnInit {
-//   passwordForm!: FormGroup;
-//   submitted = false;
-
-//   constructor(private fb: FormBuilder) {}
-
-//   ngOnInit(): void {
-//     this.passwordForm = this.fb.group({
-//       password: ['', [Validators.required, Validators.minLength(6)]],
-//       confirmPassword: ['', Validators.required]
-//     });
-//   }
-
-//   onSubmit(): void {
-//     this.submitted = true;
-
-//     if (this.passwordForm.invalid) {
-//       return;
-//     }
-
-//     if (this.passwordForm.value.password !== this.passwordForm.value.confirmPassword) {
-//       return;
-//     }
-
-//     // Submit logic here
-//     console.log('Password reset submitted:', this.passwordForm.value);
-//   }
-// }

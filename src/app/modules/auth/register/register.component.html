@@ -1,74 +1,85 @@
 <ion-content>
-        <div class="container">
-        <h2>Become User</h2>
-        <p>If you are new to our store, we are glad to have you as a member.</p>
-         
-            <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
-        <!-- First Name -->
-        <div class="form-group">
-        <label for="first-name">First Name *</label>
-        <input type="text" id="first-name" name="firstName" placeholder="First Name" ngModel required #firstName="ngModel">
-                @if (firstName.invalid && (firstName.dirty || firstName.touched)) {
-        <div class="error">First Name is required.</div>
-                }
-        </div>
-         
-              <!-- Last Name -->
-        <div class="form-group">
-        <label for="last-name">Last Name *</label>
-        <input type="text" id="last-name" name="lastName" placeholder="Last Name" ngModel required #lastName="ngModel">
-                @if (lastName.invalid && (lastName.dirty || lastName.touched)) {
-        <div class="error">Last Name is required.</div>
-                }
-        </div>
-         
-              <!-- Email -->
-        <div class="form-group">
+  <div class="register-container">
+    <h2>Become User</h2>
+    <p>If you are new to our store, we are glad to have you as a member.</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- First Name -->
+      <div class="form-group">
+        <label for="firstName">First Name *</label>
+        <input id="firstName" type="text" placeholder="First Name" formControlName="firstName" />
+        @if (f['firstName']?.errors && (f['firstName'].dirty || f['firstName'].touched)) {
+          @if (f['firstName']?.errors?.['required']) {
+            <div class="error">First Name is required.</div>
+          }
+        }
+      </div>
+
+      <!-- Last Name -->
+      <div class="form-group">
+        <label for="lastName">Last Name *</label>
+        <input id="lastName" type="text" placeholder="Last Name" formControlName="lastName" />
+        @if (f['lastName']?.errors && (f['lastName'].dirty || f['lastName'].touched)) {
+          @if (f['lastName']?.errors?.['required']) {
+            <div class="error">Last Name is required.</div>
+          }
+        }
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
         <label for="email">Email *</label>
-        <input type="email" id="email" name="email" placeholder="email@example.com" ngModel required email #email="ngModel">
-                @if (email.errors && (email.dirty || email.touched)) {
-                  @if (email.errors['required']) {
-        <div class="error">Email is required.</div>
-                  }
-                  @if (email.errors['email']) {
-        <div class="error">Enter a valid email.</div>
-                  }
-                }
-        </div>
-         
-              <!-- Password -->
-        <div class="form-group">
+        <input id="email" type="email" placeholder="email@example.com" formControlName="email" />
+        @if (f['email']?.errors && (f['email'].dirty || f['email'].touched)) {
+          @if (f['email']?.errors?.['required']) {
+            <div class="error">Email is required.</div>
+          }
+          @if (f['email']?.errors?.['email']) {
+            <div class="error">Enter a valid email.</div>
+          }
+        }
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
         <label for="password">Password *</label>
-        <input type="password" id="password" name="password" placeholder="Password" ngModel required minlength="6" #password="ngModel">
-                @if (password.errors && (password.dirty || password.touched)) {
-                  @if (password.errors['required']) {
-        <div class="error">Password is required.</div>
-                  }
-                  @if (password.errors['minlength']) {
-        <div class="error">Password must be at least 6 characters.</div>
-                  }
-                }
-        </div>
-         
-              <!-- Confirm Password -->
-        <div class="form-group">
-        <label for="confirm-password">Confirm Password *</label>
-        <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm Password" ngModel required #confirmPassword="ngModel">
-                @if (confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)) {
-                  @if (confirmPassword.errors['required']) {
-        <div class="error">Confirm Password is required.</div>
-                  }
-                }
-                @if (password.value && confirmPassword.value && password.value !== confirmPassword.value && (confirmPassword.dirty || confirmPassword.touched)) {
-        <div class="error">Passwords do not match.</div>
-                }
-        </div>
-         
-              <button type="submit" class="btn-primary" [disabled]="registerForm.invalid">Register</button>
-        </form>
-         
-            <p class="sign-in-link">
-              Already have an account? <a href="/login">Sign In</a>
-        </p>
-        </div>
-        </ion-content>
+        <input id="password" type="password" placeholder="Password" formControlName="password" />
+        @if (f['password']?.errors && (f['password'].dirty || f['password'].touched)) {
+          @if (f['password']?.errors?.['required']) {
+            <div class="error">Password is required.</div>
+          }
+          @if (f['password']?.errors?.['minlength']) {
+            <div class="error">Password must be at least 6 characters.</div>
+          }
+        }
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password *</label>
+        <input id="confirmPassword" type="password" placeholder="Confirm Password" formControlName="confirmPassword" />
+        @if (f['confirmPassword']?.errors && (f['confirmPassword'].dirty || f['confirmPassword'].touched)) {
+          @if (f['confirmPassword']?.errors?.['required']) {
+            <div class="error">Confirm Password is required.</div>
+          }
+        }
+        @if (
+          registerForm.errors?.['passwordMismatch'] &&
+          (f['confirmPassword'].dirty || f['confirmPassword'].touched)
+        ) {
+          <div class="error">Passwords do not match.</div>
+        }
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn-primary" [disabled]="registerForm.invalid">
+        Register
+      </button>
+    </form>
+
+    <!-- Login Redirect -->
+    <p class="sign-in-link">
+      Already have an account? <a href="/login">Sign In</a>
+    </p>
+  </div>
+</ion-content>

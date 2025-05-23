@@ -38,7 +38,8 @@ export class AddEditAddressComponent implements OnInit {
       postcode: ['', Validators.required],
       phone: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      is_default: [false]
+      is_default: [false],
+      vat_id: ['INV01234567891']
     });
 
     if (this.isEditMode) {
@@ -92,6 +93,7 @@ export class AddEditAddressComponent implements OnInit {
       },
       error: err => this.toastr.error('Something went wrong.')
     });
+
   }
 
   hasError(controlName: string): boolean {
