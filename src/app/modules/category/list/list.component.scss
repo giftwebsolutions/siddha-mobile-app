@@ -1,16 +1,50 @@
 .shop-cart-item {
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #ededed !important;
+    background: #fff;
+    box-shadow:none !important;
 }
 
-.shop-cart-left img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 8px;
+.shop-cart-left {
+    position: relative;
+
+    img {
+        object-fit: cover;
+        border-radius: 8px;
+        display: block;
+    }
 }
 
 .shop-cart-right {
     flex: 1;
     padding-left: 1rem;
+}
+
+.product-name {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    margin: 8px 0 4px;
+    font-weight: bold;
+}
+
+.on-sale-badge {
+    position: absolute;
+    top: -20px;
+    right: 31.5px;
+    z-index: 1;
+    font-size: 10px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.discount-value{
+    font-size: 16px;
+}
+.price {
+    font-size: 18px !important;
+
+    .regular-price{
+        padding: 0px 3px;
+        font-size: 15px !important;
+    }
 }

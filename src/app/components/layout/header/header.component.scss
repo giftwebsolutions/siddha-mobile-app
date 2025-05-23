@@ -16,3 +16,14 @@ ion-searchbar {
         background-color: #FFFFFF;
     }
 }
+
+.no-gap-buttons ion-button {
+    padding: 0 1px;
+    --padding-start: 0;
+    --padding-end: 0;
+}
+
+ion-title{
+    text-align: start;
+    padding-left: 80px !important;
+}
